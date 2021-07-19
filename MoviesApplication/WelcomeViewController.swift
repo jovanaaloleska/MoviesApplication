@@ -23,7 +23,6 @@ class WelcomeViewController: UIViewController {
         backgroundImageView.image = UIImage(named: "welcomeScreenBackground")
         
         self.view.addSubview(backgroundImageView)
-
     }
     
     func setUpConstraints() {
