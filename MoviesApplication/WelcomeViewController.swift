@@ -4,14 +4,13 @@
 //
 //  Created by Jovana Loleska on 7/19/21.
 //
-
 import UIKit
 import SnapKit
 
 class WelcomeViewController: UIViewController {
     
     var backgroundImageView: UIImageView!
-    var logInView: UIView!
+    var logInView: ConnectorsView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,25 +18,16 @@ class WelcomeViewController: UIViewController {
         setUpConstraints()
         // Do any additional setup after loading the view.
     }
+    
     func setUpViews() {
-        backgroundImageView = UIImageView()
-        backgroundImageView.image = UIImage(named: "welcomeScreenBackground")
+        backgroundImageView = Utilities.createImageView(image: "welcomeScreenBackground", contentMode: .scaleToFill)
         
-        logInView = UIView()
-        if !UIAccessibility.isReduceTransparencyEnabled{
-            logInView.backgroundColor = .clear
-            
-            let blurrEffect = UIBlurEffect(style: .dark)
-            logInView = UIVisualEffectView(effect: blurrEffect)
-        } else {
-            logInView.backgroundColor = .black
-        }
+        logInView = ConnectorsView()
         
         logInView.layer.cornerRadius = 20
         logInView.layer.masksToBounds = true
         logInView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
-
         self.view.addSubview(backgroundImageView)
         self.view.addSubview(logInView)
     }
@@ -52,14 +42,6 @@ class WelcomeViewController: UIViewController {
             make.width.equalTo(view)
             make.bottom.equalTo(view.snp.bottom)
         }
-    }
-}
-extension UIView {
-    func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
-        let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        self.layer.mask = mask
     }
 }
 
