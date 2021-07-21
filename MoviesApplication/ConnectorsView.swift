@@ -30,7 +30,7 @@ class ConnectorsView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    // MARK:- Setting Up Views And Constraints
     func setUpViews() {
         blurEffect = UIBlurEffect(style: .regular)
         blurredEffectView = UIVisualEffectView(effect: blurEffect)
@@ -42,6 +42,7 @@ class ConnectorsView: UIView {
         logInLabel.font = UIFont.boldSystemFont(ofSize: 22)
         
         logInButton = Utilities.createButton(title: "Login", backgroundColor: .systemBlue, cornerRadius: 8, titleColor: .white)
+        logInButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         
         betweenButtonsLabel = Utilities.createLabel(title: "Or, login with..", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
         betweenButtonsLabel.textAlignment = .center
@@ -75,8 +76,6 @@ class ConnectorsView: UIView {
         addSubview(fbLogInButton)
         addSubview(googleLogInButton)
         addSubview(betweenButtonsLabel)
-        //        addSubview(emailTextField)
-        //        addSubview(passwordTextField)
         addSubview(noAccountLabel)
         addSubview(signUpButton)
     }
@@ -122,5 +121,9 @@ class ConnectorsView: UIView {
             make.top.equalTo(googleLogInButton.snp.bottom).offset(3)
             make.width.equalTo(70)
         }
+    }
+    
+    @objc func buttonTapped() {
+        
     }
 }

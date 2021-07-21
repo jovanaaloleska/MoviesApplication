@@ -38,4 +38,14 @@ class Utilities {
         imageView.contentMode = contentMode
         return imageView
     }
+    static func createTextField(font: UIFont, textColor: UIColor, placeHolder: String, backgroundColor: UIColor, cornerRadius: CGFloat, textAlignment: NSTextAlignment) -> UITextField{
+        let textField = UITextField()
+        textField.font = font
+        textField.textColor = textColor
+        textField.placeholder = placeHolder
+        textField.backgroundColor = backgroundColor
+        textField.layer.cornerRadius = cornerRadius
+        textField.textAlignment = textAlignment
+        return textField
+    }
 }
