@@ -77,14 +77,14 @@
 				383A1E7326A5ABD200D52627 /* SceneDelegate.swift */,
 				383A1E7526A5ABD200D52627 /* WelcomeViewController.swift */,
 				380A28C926A6DCE60096FC19 /* ConnectorsView.swift */,
+				380A28D026A704FC0096FC19 /* SignUpView.swift */,
+				380A28D326A713510096FC19 /* SignUpTableViewCell.swift */,
+				380A28CD26A704E20096FC19 /* LogInView.swift */,
+				38C59DF826A6B59200C92AC0 /* Utilities.swift */,
 				383A1E7726A5ABD200D52627 /* Main.storyboard */,
 				383A1E7A26A5ABD300D52627 /* Assets.xcassets */,
 				383A1E7C26A5ABD300D52627 /* LaunchScreen.storyboard */,
 				383A1E7F26A5ABD300D52627 /* Info.plist */,
-				38C59DF826A6B59200C92AC0 /* Utilities.swift */,
-				380A28CD26A704E20096FC19 /* LogInView.swift */,
-				380A28D026A704FC0096FC19 /* SignUpView.swift */,
-				380A28D326A713510096FC19 /* SignUpTableViewCell.swift */,
 			);
 			path = MoviesApplication;
 			sourceTree = "<group>";
@@ -118,6 +118,7 @@
 				383A1E6B26A5ABD200D52627 /* Frameworks */,
 				383A1E6C26A5ABD200D52627 /* Resources */,
 				420B41D3612AA9B74B877855 /* [CP] Embed Pods Frameworks */,
+				2BAB25B4A9A816D84B50A434 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -174,6 +175,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2BAB25B4A9A816D84B50A434 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MoviesApplication/Pods-MoviesApplication-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MoviesApplication/Pods-MoviesApplication-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MoviesApplication/Pods-MoviesApplication-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		420B41D3612AA9B74B877855 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

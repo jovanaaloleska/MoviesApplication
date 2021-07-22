@@ -7,5 +7,7 @@ target 'MoviesApplication' do
 
   # Pods for MoviesApplication
 pod 'SnapKit'
+pod 'GoogleSignIn'
+
 
 end
