@@ -6,7 +6,9 @@
 //
 
 import UIKit
-
+protocol ConnectorsViewDelegate {
+    func showUpSignUpView()
+}
 class ConnectorsView: UIView {
     
     var logInLabel: UILabel!
@@ -18,11 +20,11 @@ class ConnectorsView: UIView {
     var blurredEffectView: UIVisualEffectView!
     var noAccountLabel: UILabel!
     var signUpButton: UIButton!
+    var delegate: ConnectorsViewDelegate!
     
     //MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setUpViews()
         setUpConstraints()
     }
@@ -43,7 +45,6 @@ class ConnectorsView: UIView {
         
         logInButton = Utilities.createButton(title: "Login", backgroundColor: .systemBlue, cornerRadius: 8, titleColor: .white)
         logInButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        
         betweenButtonsLabel = Utilities.createLabel(title: "Or, login with..", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
         betweenButtonsLabel.textAlignment = .center
         
@@ -69,6 +70,8 @@ class ConnectorsView: UIView {
 
         noAccountLabel = Utilities.createLabel(title: "Don't have an account?", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
         signUpButton = Utilities.createButton(title: "Sign up", backgroundColor: .clear, cornerRadius: 8, titleColor:.systemBlue)
+        
+        signUpButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         
         addSubview(blurredEffectView)
         addSubview(logInLabel)
@@ -124,6 +127,6 @@ class ConnectorsView: UIView {
     }
     
     @objc func buttonTapped() {
-        
+        self.delegate.showUpSignUpView()
     }
 }

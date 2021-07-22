@@ -7,6 +7,9 @@
 
 import UIKit
 
+protocol SignUpViewDelegate {
+    func returnToConnectorsView()
+}
 class SignUpView: UIView {
 
     var tableView: UITableView!
@@ -19,6 +22,7 @@ class SignUpView: UIView {
     var blurredEffectView: UIVisualEffectView!
     var backToLoginButton: UIButton!
     var backToLoginLabel: UILabel!
+    var delegate: SignUpViewDelegate!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,6 +56,9 @@ class SignUpView: UIView {
         registerButton = Utilities.createButton(title: "Register", backgroundColor: .systemBlue, cornerRadius: 8, titleColor: .white)
         
         backToLoginButton = Utilities.createButton(title: "Login", backgroundColor: .clear, cornerRadius: 8, titleColor: .systemBlue)
+        
+        backToLoginButton.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
+        
         backToLoginLabel = Utilities.createLabel(title: "Or go back to ", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
         addSubview(blurredEffectView)
         addSubview(tableView)
@@ -100,6 +107,9 @@ class SignUpView: UIView {
             make.centerY.equalTo(backToLoginLabel)
             make.left.equalTo(backToLoginLabel.snp.right).offset(2)
         }
+    }
+    @objc func logInButtonTapped(){
+        self.delegate.returnToConnectorsView()
     }
 }
 // MARK:- Delegate functions
