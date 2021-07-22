@@ -10,4 +10,5 @@ pod 'SnapKit'
 pod 'GoogleSignIn'
 
 pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
 end
