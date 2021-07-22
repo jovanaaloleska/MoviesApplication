@@ -9,5 +9,5 @@ target 'MoviesApplication' do
 pod 'SnapKit'
 pod 'GoogleSignIn'
 
-
+pod 'FBSDKCoreKit'
 end
