@@ -46,12 +46,14 @@ class SignUpTableViewCell: UITableViewCell {
     }
     
     func setUpConstraints() {
+        
         textField.snp.makeConstraints { (make) in
             make.top.equalTo(contentView).offset(5)
             make.bottom.equalTo(contentView).offset(-5)
             make.left.equalTo(iconImageView.snp.right).offset(10)
             make.right.equalTo(contentView).offset(-10)
         }
+        
         iconImageView.snp.makeConstraints { (make) in
             make.left.equalTo(contentView).offset(10)
             make.centerY.equalTo(textField)

@@ -8,6 +8,7 @@
 import UIKit
 protocol ConnectorsViewDelegate {
     func showUpSignUpView()
+    func showUpLoginView()
 }
 class ConnectorsView: UIView {
     
@@ -44,7 +45,7 @@ class ConnectorsView: UIView {
         logInLabel.font = UIFont.boldSystemFont(ofSize: 22)
         
         logInButton = Utilities.createButton(title: "Login", backgroundColor: .systemBlue, cornerRadius: 8, titleColor: .white)
-        logInButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        logInButton.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         betweenButtonsLabel = Utilities.createLabel(title: "Or, login with..", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
         betweenButtonsLabel.textAlignment = .center
         
@@ -87,38 +88,46 @@ class ConnectorsView: UIView {
         blurredEffectView.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
         }
+        
         logInLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self).offset(20)
             make.left.equalTo(self).offset(15)
         }
+        
         logInButton.snp.makeConstraints { (make) in
             make.top.equalTo(logInLabel.snp.bottom).offset(20)
             make.centerX.equalTo(self)
             //     make.centerY.equalTo(self).offset(-50)
-            make.left.equalTo(self).offset(10)
-            make.right.equalTo(self).offset(-10)
-            
+            make.left.equalTo(self).offset(20)
+            make.right.equalTo(self).offset(-20)
+            make.height.equalTo(40)
         }
+        
         betweenButtonsLabel.snp.makeConstraints { (make) in
             make.top.equalTo(logInButton.snp.bottom).offset(15)
             make.centerX.equalTo(self)
             make.width.equalTo(150)
         }
+        
         fbLogInButton.snp.makeConstraints { (make) in
             make.top.equalTo(logInButton.snp.bottom).offset(50)
-            make.left.equalTo(self).offset(10)
-            make.right.equalTo(self).offset(-10)
+            make.left.equalTo(self).offset(20)
+            make.right.equalTo(self).offset(-20)
+            make.height.equalTo(40)
         }
+        
         googleLogInButton.snp.makeConstraints { (make) in
             make.top.equalTo(fbLogInButton.snp.bottom).offset(8)
-            make.left.equalTo(self).offset(10)
-            make.right.equalTo(self).offset(-10)
-            
+            make.left.equalTo(self).offset(20)
+            make.right.equalTo(self).offset(-20)
+            make.height.equalTo(40)
         }
+        
         noAccountLabel.snp.makeConstraints { (make) in
             make.top.equalTo(googleLogInButton.snp.bottom).offset(10)
             make.centerX.equalTo(self).offset(-30)
         }
+        
         signUpButton.snp.makeConstraints { (make) in
             make.left.equalTo(noAccountLabel.snp.right).offset(1)
             make.top.equalTo(googleLogInButton.snp.bottom).offset(3)
@@ -128,5 +137,9 @@ class ConnectorsView: UIView {
     
     @objc func buttonTapped() {
         self.delegate.showUpSignUpView()
+    }
+    
+    @objc func logInButtonTapped() {
+        self.delegate.showUpLoginView()
     }
 }

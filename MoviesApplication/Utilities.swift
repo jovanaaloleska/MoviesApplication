@@ -48,4 +48,23 @@ class Utilities {
         textField.textAlignment = textAlignment
         return textField
     }
+    
+    //MARK: - CHECK WHICH IPHONE TYPE
+       func isIphoneType(type: PhoneType) -> Bool {
+            let bounds = UIScreen.main.bounds
+            let maxLength = max(bounds.size.height, bounds.size.width)
+            switch type {
+            case .Small:
+                return (maxLength <= 568)
+            case .Medium:
+                return (maxLength > 568) && (maxLength <= 667)
+            case .Large:
+                return (maxLength > 667) && (maxLength <= 736)
+            case .XLarge:
+                return (maxLength > 736) && (maxLength <= 895)
+            case .MaxLarge:
+                return (maxLength > 895)
+            }
+        }
+    
 }

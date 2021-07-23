@@ -11,7 +11,7 @@ protocol SignUpViewDelegate {
     func returnToConnectorsView()
 }
 class SignUpView: UIView {
-
+    
     var tableView: UITableView!
     var registerLabel: UILabel!
     var signUpLabel: UILabel!
@@ -60,6 +60,7 @@ class SignUpView: UIView {
         backToLoginButton.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         
         backToLoginLabel = Utilities.createLabel(title: "Or go back to ", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
+        
         addSubview(blurredEffectView)
         addSubview(tableView)
         addSubview(registerLabel)
@@ -91,11 +92,12 @@ class SignUpView: UIView {
         }
         
         registerButton.snp.makeConstraints { (make) in
-            make.top.equalTo(tableView.snp.bottom).offset(15)
+            make.top.equalTo(tableView.snp.bottom).offset(20)
             make.centerX.equalTo(self)
-            make.left.equalTo(self).offset(10)
-            make.right.equalTo(self).offset(-10)
-            make.bottom.equalTo(self).offset(-80)
+            make.left.equalTo(self).offset(20)
+            make.right.equalTo(self).offset(-20)
+            make.bottom.equalTo(self).offset(-65)
+            make.height.equalTo(40)
         }
         
         backToLoginLabel.snp.makeConstraints { (make) in
@@ -108,6 +110,7 @@ class SignUpView: UIView {
             make.left.equalTo(backToLoginLabel.snp.right).offset(2)
         }
     }
+    
     @objc func logInButtonTapped(){
         self.delegate.returnToConnectorsView()
     }
