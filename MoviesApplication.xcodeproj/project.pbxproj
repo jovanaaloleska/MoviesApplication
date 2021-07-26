@@ -11,6 +11,7 @@
 		380A28CE26A704E20096FC19 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A28CD26A704E20096FC19 /* LogInView.swift */; };
 		380A28D126A704FC0096FC19 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A28D026A704FC0096FC19 /* SignUpView.swift */; };
 		380A28D426A713510096FC19 /* SignUpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A28D326A713510096FC19 /* SignUpTableViewCell.swift */; };
+		380FBA7526AEBA0800C1CA4A /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380FBA7426AEBA0800C1CA4A /* UserInfo.swift */; };
 		383A1E7226A5ABD200D52627 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383A1E7126A5ABD200D52627 /* AppDelegate.swift */; };
 		383A1E7426A5ABD200D52627 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383A1E7326A5ABD200D52627 /* SceneDelegate.swift */; };
 		383A1E7626A5ABD200D52627 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383A1E7526A5ABD200D52627 /* WelcomeViewController.swift */; };
@@ -30,6 +31,7 @@
 		380A28CD26A704E20096FC19 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		380A28D026A704FC0096FC19 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		380A28D326A713510096FC19 /* SignUpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTableViewCell.swift; sourceTree = "<group>"; };
+		380FBA7426AEBA0800C1CA4A /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		383A1E6E26A5ABD200D52627 /* MoviesApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		383A1E7126A5ABD200D52627 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		383A1E7326A5ABD200D52627 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				38C7702A26A9BFE100B9716A /* EnumerationAnimation.swift */,
 				38E807ED26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift */,
 				38E807F026AAF29F00C1C6F1 /* SubviewTypeEnumeration.swift */,
+				380FBA7426AEBA0800C1CA4A /* UserInfo.swift */,
 			);
 			path = MoviesApplication;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				383A1E7626A5ABD200D52627 /* WelcomeViewController.swift in Sources */,
 				38C7702B26A9BFE100B9716A /* EnumerationAnimation.swift in Sources */,
 				383A1E7226A5ABD200D52627 /* AppDelegate.swift in Sources */,
+				380FBA7526AEBA0800C1CA4A /* UserInfo.swift in Sources */,
 				380A28D126A704FC0096FC19 /* SignUpView.swift in Sources */,
 				38C59DF926A6B59200C92AC0 /* Utilities.swift in Sources */,
 				38E807EE26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift in Sources */,

@@ -54,13 +54,13 @@ class SignUpView: UIView {
         registerLabel = Utilities.createLabel(title: "Register with email..", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
         registerLabel.textAlignment = .center
         registerButton = Utilities.createButton(title: "Register", backgroundColor: .systemBlue, cornerRadius: 8, titleColor: .white)
+     //   registerButton.addTarget(self, action: #selector(saveDataForUser), for: .touchUpInside)
         
         backToLoginButton = Utilities.createButton(title: "Login", backgroundColor: .clear, cornerRadius: 8, titleColor: .systemBlue)
         
         backToLoginButton.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         
         backToLoginLabel = Utilities.createLabel(title: "Or go back to ", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
-        
         addSubview(blurredEffectView)
         addSubview(tableView)
         addSubview(registerLabel)
@@ -111,7 +111,7 @@ class SignUpView: UIView {
         }
     }
     
-    @objc func logInButtonTapped(){
+    @objc func logInButtonTapped() {
         self.delegate.returnToConnectorsView()
     }
 }

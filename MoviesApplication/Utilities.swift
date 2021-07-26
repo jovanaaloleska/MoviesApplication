@@ -67,4 +67,19 @@ class Utilities {
             }
         }
     
+    func getIphoneType() -> PhoneType {
+        let bounds = UIScreen.main.bounds
+        let maxLength = max(bounds.size.height, bounds.size.width)
+        if (maxLength <= 568) {
+            return .Small
+        } else if (maxLength > 568) && (maxLength <= 667) {
+            return .Medium
+        } else if (maxLength > 667) && (maxLength <= 736) {
+            return .Large
+        } else if (maxLength > 736) && (maxLength <= 895) {
+            return .XLarge
+        } else {
+            return .MaxLarge
+        }
+}
 }

@@ -16,6 +16,7 @@ class SignUpTableViewCell: UITableViewCell {
     var textFieldPlaceholder: String!
     var textFieldIcon: String!
     var textFieldPlaceHolder: String!
+    var user: UserInfo!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -66,4 +67,5 @@ class SignUpTableViewCell: UITableViewCell {
         iconImageView.image = UIImage(named: textFieldIcon)
         textField.placeholder = textFieldPlaceHolder
     }
+    
 }

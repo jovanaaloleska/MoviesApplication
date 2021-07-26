@@ -16,6 +16,9 @@ class WelcomeViewController: UIViewController {
     var connectorsView: ConnectorsView!
     var signUpView: SignUpView!
     var logInView: LogInView!
+    var logInViewFlag = false
+    var connectorsViewFlag = false
+    var signUpViewFlag = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +96,51 @@ class WelcomeViewController: UIViewController {
         }
     }
     
+    func getHeightResizeFactorForConnectorsView() -> Double {
+        switch Utilities.sharedInstance.getIphoneType() {
+        case .Small :
+                return 2
+        case .Medium :
+                return 2.3
+        case .Large :
+                return 2.5
+        case .XLarge :
+                return 2.65
+        case .MaxLarge :
+                return 2.85
+        }
+    }
+    
+    func getHeightResizeFactorForLoginView() -> Double {
+        switch Utilities.sharedInstance.getIphoneType() {
+        case .Small :
+                return 1.95
+        case .Medium :
+                return 2.25
+        case .Large :
+                return 2.55
+        case .XLarge :
+                return 2.72
+        case .MaxLarge :
+                return 2.9
+        }
+    }
+    
+    func getHeightResizeFactorForSignupView() -> Double {
+        switch Utilities.sharedInstance.getIphoneType() {
+        case .Small :
+                return 1.4
+        case .Medium :
+                return 1.6
+        case .Large :
+                return 1.8
+        case .XLarge :
+                return 2
+        case .MaxLarge :
+                return 2.2
+        }
+    }
+    
     func presentAlertForSigningOut(){
         let alert = UIAlertController(title: "Logged in", message: "Please log out..", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Log out", style: .default, handler: { _ in
@@ -116,36 +164,23 @@ class WelcomeViewController: UIViewController {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    
+   
     
     @objc func showLogInView() {
+        self.logInViewFlag = true
         UIView.animate(withDuration: 0.5, animations: {
             self.logInView.snp.remakeConstraints { (make) in
             //    make.top.equalTo(self.view.snp.centerY)
                 make.bottom.equalTo(self.view.snp.bottom)
                 make.width.equalTo(self.view)
-                if (Utilities.sharedInstance.isIphoneType(type: .Small))
-                {
-                    make.height.equalTo(self.view).dividedBy(1.95)
-                } else if (Utilities.sharedInstance.isIphoneType(type: .Medium))
-                {
-                    make.height.equalTo(self.view).dividedBy(2.25)
-                } else if (Utilities.sharedInstance.isIphoneType(type: .Large))
-                {
-                    make.height.equalTo(self.view).dividedBy(2.55)
-                } else if(Utilities.sharedInstance.isIphoneType(type: .XLarge))
-                {
-                    make.height.equalTo(self.view).dividedBy(2.72)
-                } else if(Utilities.sharedInstance.isIphoneType(type: .MaxLarge))
-                {
-                    make.height.equalTo(self.view).dividedBy(2.9)
-                }
+                make.height.equalTo(self.view).dividedBy(self.getHeightResizeFactorForLoginView())
             }
             self.view.layoutIfNeeded()
         })
     }
     
     @objc func hideLogInView() {
+        self.logInViewFlag = false
         UIView.animate(withDuration: 0.5, animations: {
             self.logInView.snp.remakeConstraints { (make) in
                 make.top.equalTo(self.view.snp.bottom)
@@ -159,31 +194,18 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc func showConnectorsView() {
+        self.connectorsViewFlag = true
         UIView.animate(withDuration: 0.5, animations: {
             self.connectorsView.snp.remakeConstraints { (make) in
-           //     make.top.equalTo(self.view.snp.centerY)
                 make.bottom.equalTo(self.view.snp.bottom)
                 make.width.equalTo(self.view)
-                if (Utilities.sharedInstance.isIphoneType(type: .Small))
-                {
-                    make.height.equalTo(self.view).dividedBy(2)
-                } else if (Utilities.sharedInstance.isIphoneType(type: .Medium))
-                {
-                    make.height.equalTo(self.view).dividedBy(2.3)
-                } else if (Utilities.sharedInstance.isIphoneType(type: .Large))
-                {
-                    make.height.equalTo(self.view).dividedBy(2.5)
-                } else if(Utilities.sharedInstance.isIphoneType(type: .XLarge))
-                {
-                    make.height.equalTo(self.view).dividedBy(2.65)
-                } else if(Utilities.sharedInstance.isIphoneType(type: .MaxLarge)){
-                    make.height.equalTo(self.view).dividedBy(2.85)
-                }
+                make.height.equalTo(self.view).dividedBy(self.getHeightResizeFactorForConnectorsView())
             }
             self.view.layoutIfNeeded()
         })
     }
      func hideConnectorsView( viewType: WelcomeViewType) {
+        self.connectorsViewFlag = false
         UIView.animate(withDuration: 0.5, animations: {
             self.connectorsView.snp.remakeConstraints { (make) in
                 make.top.equalTo(self.view.snp.bottom)
@@ -197,6 +219,7 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc func hideSignUpView() {
+        self.signUpViewFlag = false
         UIView.animate(withDuration: 0.5, animations: {
             self.signUpView.snp.remakeConstraints { (make) in
                 make.top.equalTo(self.view.snp.bottom)
@@ -210,26 +233,12 @@ class WelcomeViewController: UIViewController {
     }
     
     func showSignUpView() {
+        self.signUpViewFlag = true
         UIView.animate(withDuration: 0.5, animations: {
             self.signUpView.snp.remakeConstraints { (make) in
                 make.bottom.equalTo(self.view.snp.bottom)
                 make.width.equalTo(self.view)
-                if (Utilities.sharedInstance.isIphoneType(type: .Small))
-                {
-                    make.height.equalTo(self.view).dividedBy(1.4)
-                } else if (Utilities.sharedInstance.isIphoneType(type: .Medium))
-                {
-                    make.height.equalTo(self.view).dividedBy(1.6)
-                } else if (Utilities.sharedInstance.isIphoneType(type: .Large))
-                {
-                    make.height.equalTo(self.view).dividedBy(1.8)
-                } else if(Utilities.sharedInstance.isIphoneType(type: .XLarge))
-                {
-                    make.height.equalTo(self.view).dividedBy(2)
-                } else if(Utilities.sharedInstance.isIphoneType(type: .MaxLarge))
-                {
-                    make.height.equalTo(self.view).dividedBy(2.2)
-                }
+                make.height.equalTo(self.view).dividedBy(self.getHeightResizeFactorForSignupView())
             }
             self.view.layoutIfNeeded()
         })
