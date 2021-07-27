@@ -9,6 +9,8 @@ import UIKit
 
 protocol LogInViewDelegate {
     func goToSignUpView()
+    func getUserDataFromLoginWith(type: TextfieldType, text: String)
+    func checkEmptyTextFieldsFromLogin()
 }
 class LogInView: UIView {
     
@@ -54,6 +56,7 @@ class LogInView: UIView {
         logInLabel.font = UIFont.boldSystemFont(ofSize: 22)
         
         logInButton = Utilities.createButton(title: "Login", backgroundColor: .systemBlue, cornerRadius: 8, titleColor: .white)
+        logInButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         
         registerLabel = Utilities.createLabel(title: "New to MoviesApp? ", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
         
@@ -108,6 +111,11 @@ class LogInView: UIView {
     @objc func registerButtonTapped(){
         self.delegate.goToSignUpView()
     }
+    
+    @objc func loginButtonTapped() {
+        self.delegate.checkEmptyTextFieldsFromLogin()
+    }
+    
 }
 // MARK:- Delegate functions
 extension LogInView : UITableViewDelegate, UITableViewDataSource {
@@ -117,11 +125,34 @@ extension LogInView : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "signUpCell", for: indexPath) as! SignUpTableViewCell
-        cell.setUpCell(textFieldIcon: arrayOfIcons[indexPath.row], textFieldPlaceHolder: arrayOfPlaceholders[indexPath.row])
+        cell.delegate = self
+        cell.setUpCell(textFieldIcon: arrayOfIcons[indexPath.row], textFieldPlaceHolder: arrayOfPlaceholders[indexPath.row], type: SignUpView.getTypeForTextField(row: indexPath.row))
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0
+    }
+}
+extension LogInView : SignUpTableViewCellDelegate {
+    func goToNextTextField(type: TextfieldType) {
+        switch type {
+        case .Email:
+            if let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? SignUpTableViewCell {
+                        cell.textField.becomeFirstResponder()
+                    }
+        case .Password:
+                self.endEditing(true)
+        default:
+            break
+        }
+    }
+    
+    func getTextfieldType(type: TextfieldType, text: String) {
+        if type == .Email {
+            delegate.getUserDataFromLoginWith(type: type, text: text)
+        } else if type == .Password {
+            delegate.getUserDataFromLoginWith(type: type, text: text)
+        }
     }
 }

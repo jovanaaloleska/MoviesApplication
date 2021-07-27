@@ -19,6 +19,14 @@ class WelcomeViewController: UIViewController {
     var logInViewFlag = false
     var connectorsViewFlag = false
     var signUpViewFlag = false
+    var userInfo = UserInfo()
+    var counterForEmptyTextFields = 0
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +39,11 @@ class WelcomeViewController: UIViewController {
         GIDSignIn.sharedInstance()?.presentingViewController = self
         
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(showConnectorsView), userInfo: nil, repeats: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     // MARK:- Setting Up Views And Constraints
     func setUpViews() {
@@ -80,13 +93,13 @@ class WelcomeViewController: UIViewController {
             make.top.equalTo(view.snp.bottom)
             make.width.equalTo(view)
             make.height.equalTo(self.view).dividedBy(2)
-            }
+        }
         
         signUpView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.snp.bottom)
             make.width.equalTo(self.view)
             make.height.equalTo(self.view).dividedBy(2)
-          
+            
         }
         
         logInView.snp.makeConstraints { (make) in
@@ -99,45 +112,92 @@ class WelcomeViewController: UIViewController {
     func getHeightResizeFactorForConnectorsView() -> Double {
         switch Utilities.sharedInstance.getIphoneType() {
         case .Small :
-                return 2
+            return 2
         case .Medium :
-                return 2.3
+            return 2.3
         case .Large :
-                return 2.5
+            return 2.5
         case .XLarge :
-                return 2.65
+            return 2.65
         case .MaxLarge :
-                return 2.85
+            return 2.85
         }
     }
     
     func getHeightResizeFactorForLoginView() -> Double {
         switch Utilities.sharedInstance.getIphoneType() {
         case .Small :
-                return 1.95
+            return 1.95
         case .Medium :
-                return 2.25
+            return 2.25
         case .Large :
-                return 2.55
+            return 2.55
         case .XLarge :
-                return 2.72
+            return 2.72
         case .MaxLarge :
-                return 2.9
+            return 2.9
         }
     }
     
     func getHeightResizeFactorForSignupView() -> Double {
         switch Utilities.sharedInstance.getIphoneType() {
         case .Small :
-                return 1.4
+            return 1.4
         case .Medium :
-                return 1.6
+            return 1.6
         case .Large :
-                return 1.8
+            return 1.8
         case .XLarge :
-                return 2
+            return 2
         case .MaxLarge :
-                return 2.2
+            return 2.2
+        }
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if (self.logInViewFlag == true) {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.logInView.snp.remakeConstraints { (make) in
+                        make.bottom.equalTo(self.view.snp.bottom).offset(-keyboardSize.height)
+                        make.width.equalTo(self.view)
+                        make.height.equalTo(self.view).dividedBy(self.getHeightResizeFactorForLoginView())
+                    }
+                    self.view.layoutIfNeeded()
+                })
+            }
+            else if (self.signUpViewFlag == true) {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.signUpView.snp.remakeConstraints { (make) in
+                        make.bottom.equalTo(self.view.snp.bottom).offset(-keyboardSize.height)
+                        make.width.equalTo(self.view)
+                        make.height.equalTo(self.view).dividedBy(self.getHeightResizeFactorForSignupView())
+                    }
+                    self.view.layoutIfNeeded()
+                })
+            }
+        }
+    }
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if (self.logInViewFlag == true) {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.logInView.snp.remakeConstraints { (make) in
+                    make.bottom.equalTo(self.view.snp.bottom)
+                    make.width.equalTo(self.view)
+                    make.height.equalTo(self.view).dividedBy(self.getHeightResizeFactorForLoginView())
+                }
+                self.view.layoutIfNeeded()
+            })
+        }
+        else if (self.signUpViewFlag == true) {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.signUpView.snp.remakeConstraints { (make) in
+                    make.bottom.equalTo(self.view.snp.bottom)
+                    make.width.equalTo(self.view)
+                    make.height.equalTo(self.view).dividedBy(self.getHeightResizeFactorForSignupView())
+                }
+                self.view.layoutIfNeeded()
+            })
         }
     }
     
@@ -164,13 +224,13 @@ class WelcomeViewController: UIViewController {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-   
+    
     
     @objc func showLogInView() {
         self.logInViewFlag = true
         UIView.animate(withDuration: 0.5, animations: {
             self.logInView.snp.remakeConstraints { (make) in
-            //    make.top.equalTo(self.view.snp.centerY)
+                //    make.top.equalTo(self.view.snp.centerY)
                 make.bottom.equalTo(self.view.snp.bottom)
                 make.width.equalTo(self.view)
                 make.height.equalTo(self.view).dividedBy(self.getHeightResizeFactorForLoginView())
@@ -204,7 +264,7 @@ class WelcomeViewController: UIViewController {
             self.view.layoutIfNeeded()
         })
     }
-     func hideConnectorsView( viewType: WelcomeViewType) {
+    func hideConnectorsView( viewType: WelcomeViewType) {
         self.connectorsViewFlag = false
         UIView.animate(withDuration: 0.5, animations: {
             self.connectorsView.snp.remakeConstraints { (make) in
@@ -243,6 +303,13 @@ class WelcomeViewController: UIViewController {
             self.view.layoutIfNeeded()
         })
     }
+    
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
+    }
 }
 
 extension WelcomeViewController : ConnectorsViewDelegate {
@@ -255,14 +322,44 @@ extension WelcomeViewController : ConnectorsViewDelegate {
     }
 }
 extension WelcomeViewController : SignUpViewDelegate {
+    func checkEmptyTextFields() {
+        if (userInfo.email == "" || userInfo.password == "" || userInfo.firstName == "" || userInfo.lastName == "") {
+            showAlert(with: "All fields are required.", message: nil)
+        }
+    }
+    
     func returnToConnectorsView() {
         hideSignUpView()
+    }
+    func getUserDataWith(type: TextfieldType, text: String) {
+        if type == .Email {
+            isValidEmail(text) ? userInfo.email = text : showAlert(with: "Error", message: "Wrong format for Email.")
+        } else if type == .Password {
+            userInfo.password = text
+        } else if type == .FirstName {
+            userInfo.firstName = text
+        } else if type == .LastName {
+            userInfo.lastName = text
+        }
     }
 }
 
 extension WelcomeViewController : LogInViewDelegate {
     func goToSignUpView() {
         hideLogInView()
+    }
+    func getUserDataFromLoginWith(type: TextfieldType, text: String) {
+        if type == .Email {
+            isValidEmail(text) ? userInfo.email = text : showAlert(with: "Error", message: "Wrong format for Email.")
+        } else if type == .Password {
+            userInfo.password = text
+        }
+    }
+    
+    func checkEmptyTextFieldsFromLogin() {
+        if (userInfo.email == "" || userInfo.password == "") {
+            showAlert(with: "All fields are required.", message: nil)
+        }
     }
 }
 
@@ -278,7 +375,6 @@ extension WelcomeViewController : LoginButtonDelegate {
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
         print("User logged out")
-        
     }
     
     func getUserDataFromFacebook() {

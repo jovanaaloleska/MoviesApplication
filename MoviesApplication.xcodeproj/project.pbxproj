@@ -18,10 +18,12 @@
 		383A1E7926A5ABD200D52627 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383A1E7726A5ABD200D52627 /* Main.storyboard */; };
 		383A1E7B26A5ABD300D52627 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 383A1E7A26A5ABD300D52627 /* Assets.xcassets */; };
 		383A1E7E26A5ABD300D52627 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383A1E7C26A5ABD300D52627 /* LaunchScreen.storyboard */; };
+		3879CD2226AFEC2300D8821E /* TextfieldTypeEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3879CD2126AFEC2300D8821E /* TextfieldTypeEnumeration.swift */; };
 		38C59DF926A6B59200C92AC0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C59DF826A6B59200C92AC0 /* Utilities.swift */; };
 		38C7702B26A9BFE100B9716A /* EnumerationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7702A26A9BFE100B9716A /* EnumerationAnimation.swift */; };
 		38E807EE26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E807ED26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift */; };
 		38E807F126AAF29F00C1C6F1 /* SubviewTypeEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E807F026AAF29F00C1C6F1 /* SubviewTypeEnumeration.swift */; };
+		38F6FCEC26B0005A003183FF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F6FCEB26B0005A003183FF /* Extensions.swift */; };
 		9A1672E5D200CEC4991CB657 /* Pods_MoviesApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CBF17A071B98790031A6F6E /* Pods_MoviesApplication.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,10 +42,12 @@
 		383A1E7A26A5ABD300D52627 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		383A1E7D26A5ABD300D52627 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		383A1E7F26A5ABD300D52627 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3879CD2126AFEC2300D8821E /* TextfieldTypeEnumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldTypeEnumeration.swift; sourceTree = "<group>"; };
 		38C59DF826A6B59200C92AC0 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		38C7702A26A9BFE100B9716A /* EnumerationAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumerationAnimation.swift; sourceTree = "<group>"; };
 		38E807ED26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTypeEnumeration.swift; sourceTree = "<group>"; };
 		38E807F026AAF29F00C1C6F1 /* SubviewTypeEnumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubviewTypeEnumeration.swift; sourceTree = "<group>"; };
+		38F6FCEB26B0005A003183FF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4E17EE1AD4237A9E443DCDE4 /* Pods-MoviesApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesApplication.release.xcconfig"; path = "Target Support Files/Pods-MoviesApplication/Pods-MoviesApplication.release.xcconfig"; sourceTree = "<group>"; };
 		D15167B5F2EE2D0860C50ABD /* Pods-MoviesApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesApplication.debug.xcconfig"; path = "Target Support Files/Pods-MoviesApplication/Pods-MoviesApplication.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,6 +87,9 @@
 			children = (
 				383A1E7126A5ABD200D52627 /* AppDelegate.swift */,
 				383A1E7326A5ABD200D52627 /* SceneDelegate.swift */,
+				38F6FCEB26B0005A003183FF /* Extensions.swift */,
+				3879CD2026AFEBDC00D8821E /* Enumerations */,
+				38F6FCF926B015D4003183FF /* Model */,
 				383A1E7526A5ABD200D52627 /* WelcomeViewController.swift */,
 				380A28C926A6DCE60096FC19 /* ConnectorsView.swift */,
 				380A28D026A704FC0096FC19 /* SignUpView.swift */,
@@ -93,12 +100,27 @@
 				383A1E7A26A5ABD300D52627 /* Assets.xcassets */,
 				383A1E7C26A5ABD300D52627 /* LaunchScreen.storyboard */,
 				383A1E7F26A5ABD300D52627 /* Info.plist */,
+			);
+			path = MoviesApplication;
+			sourceTree = "<group>";
+		};
+		3879CD2026AFEBDC00D8821E /* Enumerations */ = {
+			isa = PBXGroup;
+			children = (
 				38C7702A26A9BFE100B9716A /* EnumerationAnimation.swift */,
 				38E807ED26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift */,
 				38E807F026AAF29F00C1C6F1 /* SubviewTypeEnumeration.swift */,
+				3879CD2126AFEC2300D8821E /* TextfieldTypeEnumeration.swift */,
+			);
+			path = Enumerations;
+			sourceTree = "<group>";
+		};
+		38F6FCF926B015D4003183FF /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				380FBA7426AEBA0800C1CA4A /* UserInfo.swift */,
 			);
-			path = MoviesApplication;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		7CB3EE87CA0C47C4EE8387BA /* Pods */ = {
@@ -252,6 +274,7 @@
 			files = (
 				380A28CE26A704E20096FC19 /* LogInView.swift in Sources */,
 				383A1E7626A5ABD200D52627 /* WelcomeViewController.swift in Sources */,
+				3879CD2226AFEC2300D8821E /* TextfieldTypeEnumeration.swift in Sources */,
 				38C7702B26A9BFE100B9716A /* EnumerationAnimation.swift in Sources */,
 				383A1E7226A5ABD200D52627 /* AppDelegate.swift in Sources */,
 				380FBA7526AEBA0800C1CA4A /* UserInfo.swift in Sources */,
@@ -262,6 +285,7 @@
 				383A1E7426A5ABD200D52627 /* SceneDelegate.swift in Sources */,
 				38E807F126AAF29F00C1C6F1 /* SubviewTypeEnumeration.swift in Sources */,
 				380A28CA26A6DCE60096FC19 /* ConnectorsView.swift in Sources */,
+				38F6FCEC26B0005A003183FF /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,8 @@ import UIKit
 
 protocol SignUpViewDelegate {
     func returnToConnectorsView()
+    func getUserDataWith(type: TextfieldType, text: String)
+    func checkEmptyTextFields()
 }
 class SignUpView: UIView {
     
@@ -23,6 +25,7 @@ class SignUpView: UIView {
     var backToLoginButton: UIButton!
     var backToLoginLabel: UILabel!
     var delegate: SignUpViewDelegate!
+    var i = 1
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,14 +56,15 @@ class SignUpView: UIView {
         
         registerLabel = Utilities.createLabel(title: "Register with email..", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
         registerLabel.textAlignment = .center
+        
         registerButton = Utilities.createButton(title: "Register", backgroundColor: .systemBlue, cornerRadius: 8, titleColor: .white)
-     //   registerButton.addTarget(self, action: #selector(saveDataForUser), for: .touchUpInside)
+        registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         
         backToLoginButton = Utilities.createButton(title: "Login", backgroundColor: .clear, cornerRadius: 8, titleColor: .systemBlue)
-        
         backToLoginButton.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         
         backToLoginLabel = Utilities.createLabel(title: "Or go back to ", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
+        
         addSubview(blurredEffectView)
         addSubview(tableView)
         addSubview(registerLabel)
@@ -114,6 +118,29 @@ class SignUpView: UIView {
     @objc func logInButtonTapped() {
         self.delegate.returnToConnectorsView()
     }
+    
+    @objc func registerButtonTapped () {
+        self.delegate.checkEmptyTextFields()
+    }
+    
+    static func getTypeForTextField(row: Int) -> TextfieldType {
+        if row == 0 {
+            return .Email
+        } else if row == 1 {
+            return .Password
+        } else if row == 2 {
+            return .FirstName
+        } else {
+            return .LastName
+        }
+    }
+    
+    func changingActiveTextField(row: Int) {
+        if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as? SignUpTableViewCell {
+            cell.textField.becomeFirstResponder()
+        }
+        
+    }
 }
 // MARK:- Delegate functions
 extension SignUpView : UITableViewDelegate, UITableViewDataSource {
@@ -123,7 +150,8 @@ extension SignUpView : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "signUpCell", for: indexPath) as! SignUpTableViewCell
-        cell.setUpCell(textFieldIcon: arrayOfIcons[indexPath.row], textFieldPlaceHolder: arrayOfPlaceholders[indexPath.row])
+        cell.delegate = self
+        cell.setUpCell(textFieldIcon: arrayOfIcons[indexPath.row], textFieldPlaceHolder: arrayOfPlaceholders[indexPath.row], type: SignUpView.getTypeForTextField(row: indexPath.row))
         return cell
     }
     
@@ -131,3 +159,33 @@ extension SignUpView : UITableViewDelegate, UITableViewDataSource {
         return 50.0
     }
 }
+
+extension SignUpView : SignUpTableViewCellDelegate {
+    
+    func goToNextTextField(type: TextfieldType) {
+        switch type {
+        case .Email:
+            changingActiveTextField(row: 1)
+        case .Password:
+            changingActiveTextField(row: 2)
+        case .FirstName:
+            changingActiveTextField(row: 3)
+        case .LastName:
+            self.endEditing(true)
+        }
+    }
+    
+    func getTextfieldType(type: TextfieldType, text: String) {
+        if type == .Email {
+            delegate.getUserDataWith(type: type, text: text)
+        } else if type == .Password {
+            delegate.getUserDataWith(type: type, text: text)
+        } else if type == .FirstName {
+            delegate.getUserDataWith(type: type, text: text)
+        } else if type == .LastName {
+            delegate.getUserDataWith(type: type, text: text)
+        }
+    }
+    
+}
+

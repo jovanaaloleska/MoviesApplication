@@ -6,7 +6,10 @@
 //
 
 import UIKit
-
+protocol SignUpTableViewCellDelegate {
+    func getTextfieldType (type: TextfieldType, text: String)
+    func goToNextTextField(type: TextfieldType)
+    }
 class SignUpTableViewCell: UITableViewCell {
     
     var textField: UITextField!
@@ -16,7 +19,8 @@ class SignUpTableViewCell: UITableViewCell {
     var textFieldPlaceholder: String!
     var textFieldIcon: String!
     var textFieldPlaceHolder: String!
-    var user: UserInfo!
+    var delegate: SignUpTableViewCellDelegate!
+    var textFieldType: TextfieldType!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,6 +39,7 @@ class SignUpTableViewCell: UITableViewCell {
     func setUpViews() {
         self.selectionStyle = .none
         textField = Utilities.createTextField(font: .systemFont(ofSize: 15), textColor: .black, placeHolder: "", backgroundColor: .clear, cornerRadius: 1, textAlignment: .left)
+        textField.delegate = self
         
         iconImageView = Utilities.createImageView(image: "", contentMode: .scaleAspectFill)
         iconImageView.contentMode = .scaleAspectFit
@@ -63,9 +68,21 @@ class SignUpTableViewCell: UITableViewCell {
         }
     }
     
-    func setUpCell(textFieldIcon: String, textFieldPlaceHolder: String){
+    func setUpCell(textFieldIcon: String, textFieldPlaceHolder: String, type: TextfieldType){
+        textFieldType = type
         iconImageView.image = UIImage(named: textFieldIcon)
         textField.placeholder = textFieldPlaceHolder
     }
+}
+
+extension SignUpTableViewCell : UITextFieldDelegate {
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        delegate.getTextfieldType(type: textFieldType, text: textField.text ?? "")
+    }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        delegate.goToNextTextField(type: textFieldType)
+        return true
+    }
 }

@@ -14,6 +14,9 @@ class UserInfo {
     var firstName: String!
     var lastName: String!
 
+    init() {
+    }
+    
     init(email: String, password: String, firstName: String, lastName: String) {
         self.email = email
         self.password = password
