@@ -12,6 +12,7 @@ protocol SignUpViewDelegate {
     func getUserDataWith(type: TextfieldType, text: String)
     func checkEmptyTextFields()
 }
+
 class SignUpView: UIView {
     
     var tableView: UITableView!
@@ -25,7 +26,6 @@ class SignUpView: UIView {
     var backToLoginButton: UIButton!
     var backToLoginLabel: UILabel!
     var delegate: SignUpViewDelegate!
-    var i = 1
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -186,6 +186,5 @@ extension SignUpView : SignUpTableViewCellDelegate {
             delegate.getUserDataWith(type: type, text: text)
         }
     }
-    
 }
 

@@ -71,7 +71,7 @@ class LogInView: UIView {
         self.addSubview(registerLabel)
         self.addSubview(registerButton)
     }
-    func setUpConstraints(){
+    func setUpConstraints() {
         blurredEffectView.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
         }
@@ -108,7 +108,7 @@ class LogInView: UIView {
         }
     }
     
-    @objc func registerButtonTapped(){
+    @objc func registerButtonTapped() {
         self.delegate.goToSignUpView()
     }
     
@@ -139,10 +139,10 @@ extension LogInView : SignUpTableViewCellDelegate {
         switch type {
         case .Email:
             if let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? SignUpTableViewCell {
-                        cell.textField.becomeFirstResponder()
-                    }
+                cell.textField.becomeFirstResponder()
+            }
         case .Password:
-                self.endEditing(true)
+            self.endEditing(true)
         default:
             break
         }

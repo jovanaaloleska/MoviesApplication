@@ -8,7 +8,7 @@
 import Foundation
 
 
-class UserInfo {
+class UserInfo: Codable {
     var email: String!
     var password: String!
     var firstName: String!

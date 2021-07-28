@@ -9,7 +9,7 @@ import UIKit
 protocol SignUpTableViewCellDelegate {
     func getTextfieldType (type: TextfieldType, text: String)
     func goToNextTextField(type: TextfieldType)
-    }
+}
 class SignUpTableViewCell: UITableViewCell {
     
     var textField: UITextField!
@@ -21,6 +21,7 @@ class SignUpTableViewCell: UITableViewCell {
     var textFieldPlaceHolder: String!
     var delegate: SignUpTableViewCellDelegate!
     var textFieldType: TextfieldType!
+    var showPassButton: UIButton!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -45,6 +46,9 @@ class SignUpTableViewCell: UITableViewCell {
         iconImageView.contentMode = .scaleAspectFit
         iconImageView.layer.masksToBounds = true
         iconImageView.backgroundColor = .clear
+        
+        showPassButton = UIButton()
+        showPassButton.setImage(UIImage(named: "passIcon"), for: .normal)
         
         self.backgroundColor = .clear
         self.contentView.addSubview(textField)
@@ -72,11 +76,26 @@ class SignUpTableViewCell: UITableViewCell {
         textFieldType = type
         iconImageView.image = UIImage(named: textFieldIcon)
         textField.placeholder = textFieldPlaceHolder
+        if type == .Password {
+            textField.isSecureTextEntry = true
+            showPassButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -16)
+            showPassButton.addTarget(self, action: #selector(checkingVisibilityOfPassword), for: .touchUpInside)
+            textField.rightView = showPassButton
+            textField.rightViewMode = .always
+        }
+    }
+    
+    @objc func checkingVisibilityOfPassword() {
+        if textField.isSecureTextEntry == true {
+            textField.isSecureTextEntry = false
+        } else {
+            textField.isSecureTextEntry = true
+        }
     }
 }
 
 extension SignUpTableViewCell : UITextFieldDelegate {
-
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         delegate.getTextfieldType(type: textFieldType, text: textField.text ?? "")
     }

@@ -20,7 +20,8 @@ class WelcomeViewController: UIViewController {
     var connectorsViewFlag = false
     var signUpViewFlag = false
     var userInfo = UserInfo()
-    var counterForEmptyTextFields = 0
+    var arrayUsers = [UserInfo]()
+    var registeredUserFlag = false
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -39,6 +40,9 @@ class WelcomeViewController: UIViewController {
         GIDSignIn.sharedInstance()?.presentingViewController = self
         
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(showConnectorsView), userInfo: nil, repeats: false)
+        
+        decodeDataFromUserDefaults()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -278,6 +282,18 @@ class WelcomeViewController: UIViewController {
         })
     }
     
+    func showSignUpView() {
+        self.signUpViewFlag = true
+        UIView.animate(withDuration: 0.5, animations: {
+            self.signUpView.snp.remakeConstraints { (make) in
+                make.bottom.equalTo(self.view.snp.bottom)
+                make.width.equalTo(self.view)
+                make.height.equalTo(self.view).dividedBy(self.getHeightResizeFactorForSignupView())
+            }
+            self.view.layoutIfNeeded()
+        })
+    }
+    
     @objc func hideSignUpView() {
         self.signUpViewFlag = false
         UIView.animate(withDuration: 0.5, animations: {
@@ -292,23 +308,31 @@ class WelcomeViewController: UIViewController {
         })
     }
     
-    func showSignUpView() {
-        self.signUpViewFlag = true
-        UIView.animate(withDuration: 0.5, animations: {
-            self.signUpView.snp.remakeConstraints { (make) in
-                make.bottom.equalTo(self.view.snp.bottom)
-                make.width.equalTo(self.view)
-                make.height.equalTo(self.view).dividedBy(self.getHeightResizeFactorForSignupView())
-            }
-            self.view.layoutIfNeeded()
-        })
-    }
-    
     func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
+    }
+    
+    func checkForEmptyDataForRegister (user: UserInfo) -> Bool {
+        if ((user.email == "" || user.email == nil) || (user.password == "" || user.password == nil) || (user.firstName == "" || user.firstName == nil) || (user.lastName == "" || user.lastName == nil)) {
+            return true
+        }
+        return false
+    }
+    
+    func decodeDataFromUserDefaults() {
+        if let data = UserPersistence.sharedInstance.defaults.data(forKey: "arrayUsers")
+        {
+            do {
+                let decoder = JSONDecoder()
+                arrayUsers = try decoder.decode([UserInfo].self, from: data)
+                
+            } catch {
+                print("Unable to decode Array of Users (\(error)")
+            }
+        }
     }
 }
 
@@ -321,16 +345,38 @@ extension WelcomeViewController : ConnectorsViewDelegate {
         hideConnectorsView(viewType: .signUpView)
     }
 }
+
 extension WelcomeViewController : SignUpViewDelegate {
     func checkEmptyTextFields() {
-        if (userInfo.email == "" || userInfo.password == "" || userInfo.firstName == "" || userInfo.lastName == "") {
+        if checkForEmptyDataForRegister(user: userInfo) {
             showAlert(with: "All fields are required.", message: nil)
+        } else {
+            for user in arrayUsers {
+                if userInfo.email == user.email {
+                    print("Already registered.")
+                    showAlert(with: "Already registered.", message: nil)
+                    registeredUserFlag = true
+                    break
+                }
+            }
+            if registeredUserFlag == false {
+            do {
+                let encoder = JSONEncoder()
+                arrayUsers.append(userInfo)
+                let data = try encoder.encode(arrayUsers)
+                
+                UserPersistence.sharedInstance.setArrayUsers(arrayUsers: data)
+            } catch {
+                print("Unable to encode User info (\(error)")
+                }
+            }
         }
     }
     
     func returnToConnectorsView() {
         hideSignUpView()
     }
+    
     func getUserDataWith(type: TextfieldType, text: String) {
         if type == .Email {
             isValidEmail(text) ? userInfo.email = text : showAlert(with: "Error", message: "Wrong format for Email.")
@@ -357,8 +403,29 @@ extension WelcomeViewController : LogInViewDelegate {
     }
     
     func checkEmptyTextFieldsFromLogin() {
-        if (userInfo.email == "" || userInfo.password == "") {
+        if ((userInfo.email == "" || userInfo.email == nil) || (userInfo.password == "" || userInfo.password == nil)) {
             showAlert(with: "All fields are required.", message: nil)
+        } else {
+            if let data = UserPersistence.sharedInstance.defaults.data(forKey: "arrayUsers")
+            {
+                do {
+                    let decoder = JSONDecoder()
+                    arrayUsers = try decoder.decode([UserInfo].self, from: data)
+                    
+                } catch {
+                    print("Unable to decode Array of Users (\(error)")
+                }
+            }
+            for user in arrayUsers {
+                if ((userInfo.email == user.email) && (userInfo.password == user.password)) {
+                    print("Logged in.")
+                    registeredUserFlag = true
+                    break
+                }
+            }
+            if registeredUserFlag == false {
+                showAlert(with: "Not registered", message: "Please register first.")
+            }
         }
     }
 }

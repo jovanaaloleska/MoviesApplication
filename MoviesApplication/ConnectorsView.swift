@@ -68,7 +68,7 @@ class ConnectorsView: UIView {
         googleLogInButton.layer.cornerRadius = 8
         googleLogInButton.contentMode = .scaleAspectFill
         googleLogInButton.imageEdgeInsets.left = -15
-
+        
         noAccountLabel = Utilities.createLabel(title: "Don't have an account?", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
         signUpButton = Utilities.createButton(title: "Sign up", backgroundColor: .clear, cornerRadius: 8, titleColor:.systemBlue)
         
@@ -97,7 +97,6 @@ class ConnectorsView: UIView {
         logInButton.snp.makeConstraints { (make) in
             make.top.equalTo(logInLabel.snp.bottom).offset(20)
             make.centerX.equalTo(self)
-            //     make.centerY.equalTo(self).offset(-50)
             make.left.equalTo(self).offset(20)
             make.right.equalTo(self).offset(-20)
             make.height.equalTo(40)
