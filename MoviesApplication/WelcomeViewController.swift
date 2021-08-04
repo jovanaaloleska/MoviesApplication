@@ -22,6 +22,8 @@ class WelcomeViewController: UIViewController {
     var userInfo = UserInfo()
     var arrayUsers = [UserInfo]()
     var registeredUserFlag = false
+    var loginMenager = LoginManager()
+    var currentlyLoggedInUser = UserInfo()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -33,10 +35,12 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         setUpViews()
         setUpConstraints()
+        
         NotificationCenter.default.addObserver(forName: .AccessTokenDidChange, object: nil, queue: OperationQueue.main) { (notification) in
             // Print out access token
             print("FB Access Token: \(String(describing: AccessToken.current?.tokenString))")
         }
+        
         GIDSignIn.sharedInstance()?.presentingViewController = self
         
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(showConnectorsView), userInfo: nil, repeats: false)
@@ -334,9 +338,50 @@ class WelcomeViewController: UIViewController {
             }
         }
     }
+    
+    func facebookLogin() {
+        let loginManager = LoginManager()
+        loginManager.logOut()
+        
+        loginManager.logIn(permissions: ["public_profile", "email"], from: self) { (result, error) in
+            if (result!.isCancelled) {
+                
+            } else if ((result?.grantedPermissions.contains("email")) ?? false) {
+                let request = GraphRequest(graphPath: "me", parameters: ["fields":"email,first_name,last_name"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: .get)
+                request.start { (connection, result, error) in
+                    if (error == nil) {
+                        if let fields = result as? [String:Any], let name = fields["first_name"] as? String, let lastname = fields["last_name"] as? String, let email = fields["email"] as? String {
+                            
+                            self.currentlyLoggedInUser = UserInfo(email: email, password: "", firstName: name, lastName: lastname)
+                            
+                            do {
+                                let encoder = JSONEncoder()
+                                let data = try encoder.encode(self.currentlyLoggedInUser)
+                                UserPersistence.sharedInstance.setCurrrentActiveUser(currentUser: data)
+                                
+                            } catch {
+                                print("Unable to encode User info (\(error)")
+                            }
+                        } else {
+                            print("An error occured: \(String(describing: error))")
+                        }
+                    }
+                }
+            } else {
+                print("Failed")
+            }
+        }
+    }
 }
-
 extension WelcomeViewController : ConnectorsViewDelegate {
+    func signInFacebookButtonTapped() {
+        facebookLogin()
+    }
+    
+    func signInGoogleButtonTapped() {
+        GIDSignIn.sharedInstance()?.signIn()
+    }
+    
     func showUpLoginView() {
         hideConnectorsView(viewType: .logInView)
     }
@@ -360,14 +405,14 @@ extension WelcomeViewController : SignUpViewDelegate {
                 }
             }
             if registeredUserFlag == false {
-            do {
-                let encoder = JSONEncoder()
-                arrayUsers.append(userInfo)
-                let data = try encoder.encode(arrayUsers)
-                
-                UserPersistence.sharedInstance.setArrayUsers(arrayUsers: data)
-            } catch {
-                print("Unable to encode User info (\(error)")
+                do {
+                    let encoder = JSONEncoder()
+                    arrayUsers.append(userInfo)
+                    let data = try encoder.encode(arrayUsers)
+                    
+                    UserPersistence.sharedInstance.setArrayUsers(arrayUsers: data)
+                } catch {
+                    print("Unable to encode User info (\(error)")
                 }
             }
         }
@@ -430,47 +475,8 @@ extension WelcomeViewController : LogInViewDelegate {
     }
 }
 
-extension WelcomeViewController : LoginButtonDelegate {
-    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        if let err = error {
-            print(err.localizedDescription)
-            return
-        } else {
-            self.getUserDataFromFacebook()
-        }
-    }
-    
-    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-        print("User logged out")
-    }
-    
-    func getUserDataFromFacebook() {
-        let graphRequest = GraphRequest(graphPath: "me", parameters: ["fields": "first_name, last_name, picture, id"], tokenString: AccessToken.current?.tokenString, version: Settings.defaultGraphAPIVersion, httpMethod: HTTPMethod.get)
-        
-        graphRequest.start { (connection, result, error) in
-            if let err = error {
-                print(err.localizedDescription)
-                return
-            } else {
-                //                if let fields = result as? [String:Any], let name = fields["first_name"] as? String, let lastname = fields["last_name"] as? String, let pictureDict = fields["picture"] as? [String : Any], let pictureData = pictureDict["data"] as? [String:Any], let picture = pictureData["url"] as? String, let userId = fields["id"] as? String
-                //                {
-                //                    self.user1 = User(dict: ["profilePicture" : picture])
-                //                    self.user1 = User(dict: ["id" : userId, "first_name" : name, "last_name" : lastname])
-                //
-                //                    KingfisherManager.shared.cache.clearMemoryCache()
-                //                    KingfisherManager.shared.cache.clearDiskCache()
-                //                    KingfisherManager.shared.cache.cleanExpiredDiskCache()
-                //                    if let url = URL(string: "https://graph.facebook.com/\(self.user1.id ?? "")/picture?type=large")
-                //                    {  fbImageView.kf.setImage(with: url, options: [.scaleFactor(UIScreen.main.scale), .transition(.flipFromBottom(0.1))])
-                //                    }
-                //                } else {
-                //                    print("An error occured: \(String(describing: error))")
-                //                }
-            }
-        }
-    }
-}
 extension WelcomeViewController : GIDSignInDelegate {
+    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         
         // Check for sign in error
@@ -482,11 +488,20 @@ extension WelcomeViewController : GIDSignInDelegate {
             }
             return
         }
-        //        if let firstName = user.profile.givenName, let lastName = user.profile.familyName, let eMail = user.profile.email, let profilePicture = user.profile.imageURL(withDimension: 300) {
-        //            self.user1 = User.init(dict: ["name" : firstName, "lastName" : lastName, "eMail" : eMail, "profilePicture" : profilePicture])
-        //            updateScreen()
-        //        }
+        
+        print("Successfully Logged in with Google.")
+        
+        // Post notification after user successfully sign in
+        NotificationCenter.default.post(name: .signInGoogleCompleted, object: nil)
     }
 }
 
+// MARK:- Notification names
+extension Notification.Name {
+    
+    /// Notification when user successfully sign in using Google
+    static var signInGoogleCompleted: Notification.Name {
+        return .init(rawValue: #function)
+    }
+}
 

@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import GoogleSignIn
+import FBSDKCoreKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+
     var window: UIWindow?
     var navigationController: UINavigationController!
 
@@ -20,7 +23,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         // Override point for customization after application launch.
+        ApplicationDelegate.shared.application(
+            application,
+            didFinishLaunchingWithOptions:
+                launchOptions
+        )
+
+        GIDSignIn.sharedInstance().clientID = "327874594939-plvnvrrvcsfusdmurbbuo2bs9t31grvf.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
         return true
+    }
+    
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+        if ((GIDSignIn.sharedInstance()?.handle(url))!) {
+            return (GIDSignIn.sharedInstance()?.handle(url))!
+        } else if (ApplicationDelegate.shared.application(app, open: url, options: options)) {
+            return ApplicationDelegate.shared.application(app, open: url, options: options)
+        }
+        return false
     }
 
     // MARK: UISceneSession Lifecycle
@@ -36,7 +58,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
 }
 

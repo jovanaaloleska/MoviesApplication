@@ -9,6 +9,8 @@ import UIKit
 protocol ConnectorsViewDelegate {
     func showUpSignUpView()
     func showUpLoginView()
+    func signInGoogleButtonTapped()
+    func signInFacebookButtonTapped()
 }
 class ConnectorsView: UIView {
     
@@ -58,6 +60,7 @@ class ConnectorsView: UIView {
         fbLogInButton.layer.cornerRadius = 8
         fbLogInButton.contentMode = .scaleAspectFill
         fbLogInButton.imageEdgeInsets.left = -7
+        fbLogInButton.addTarget(self, action: #selector(facebookButtonTapped), for: .touchUpInside)
         
         googleLogInButton = UIButton()
         googleLogInButton.setImage(UIImage(named: "googleicon"), for: .normal)
@@ -68,6 +71,7 @@ class ConnectorsView: UIView {
         googleLogInButton.layer.cornerRadius = 8
         googleLogInButton.contentMode = .scaleAspectFill
         googleLogInButton.imageEdgeInsets.left = -15
+        googleLogInButton.addTarget(self, action: #selector(googleButtonTapped), for: .touchUpInside)
         
         noAccountLabel = Utilities.createLabel(title: "Don't have an account?", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
         signUpButton = Utilities.createButton(title: "Sign up", backgroundColor: .clear, cornerRadius: 8, titleColor:.systemBlue)
@@ -140,5 +144,13 @@ class ConnectorsView: UIView {
     
     @objc func logInButtonTapped() {
         self.delegate.showUpLoginView()
+    }
+    
+    @objc func googleButtonTapped() {
+        self.delegate.signInGoogleButtonTapped()
+    }
+    
+    @objc func facebookButtonTapped() {
+        self.delegate.signInFacebookButtonTapped()
     }
 }

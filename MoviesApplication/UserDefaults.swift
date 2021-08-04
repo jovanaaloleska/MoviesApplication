@@ -12,6 +12,7 @@ class UserPersistence {
     static let sharedInstance = UserPersistence()
     var defaults = UserDefaults.standard
     var arrayUsers = [UserInfo]()
+    var currentUser = UserInfo()
     
     func setArrayUsers(arrayUsers: Data?) {
         if let safeArrayUsers = arrayUsers {
@@ -21,6 +22,20 @@ class UserPersistence {
     
     func getArrayUsers() -> Data? {
         if let data = defaults.data(forKey: "arrayUsers"){
+            return data
+        } else {
+            return nil
+        }
+    }
+    
+    func setCurrrentActiveUser(currentUser: Data?) {
+        if let safeCurrentUser = currentUser {
+            defaults.setValue(safeCurrentUser, forKey: "currentUser")
+        }
+    }
+    
+    func getCurrentActiveUser() -> Data? {
+        if let data = defaults.data(forKey: "currentUser"){
             return data
         } else {
             return nil

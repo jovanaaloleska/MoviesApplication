@@ -49,6 +49,8 @@ class SignUpTableViewCell: UITableViewCell {
         
         showPassButton = UIButton()
         showPassButton.setImage(UIImage(named: "passIcon"), for: .normal)
+        showPassButton.addTarget(self, action: #selector(checkingVisibilityOfPassword), for: .touchUpInside)
+        showPassButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -16)
         
         self.backgroundColor = .clear
         self.contentView.addSubview(textField)
@@ -78,19 +80,13 @@ class SignUpTableViewCell: UITableViewCell {
         textField.placeholder = textFieldPlaceHolder
         if type == .Password {
             textField.isSecureTextEntry = true
-            showPassButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -16)
-            showPassButton.addTarget(self, action: #selector(checkingVisibilityOfPassword), for: .touchUpInside)
             textField.rightView = showPassButton
             textField.rightViewMode = .always
         }
     }
     
     @objc func checkingVisibilityOfPassword() {
-        if textField.isSecureTextEntry == true {
-            textField.isSecureTextEntry = false
-        } else {
-            textField.isSecureTextEntry = true
-        }
+        textField.isSecureTextEntry == true ? (textField.isSecureTextEntry = false) : (textField.isSecureTextEntry = true)
     }
 }
 

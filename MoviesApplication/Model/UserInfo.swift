@@ -9,10 +9,10 @@ import Foundation
 
 
 class UserInfo: Codable {
-    var email: String!
-    var password: String!
-    var firstName: String!
-    var lastName: String!
+    var email: String?
+    var password: String?
+    var firstName: String?
+    var lastName: String?
 
     init() {
     }
