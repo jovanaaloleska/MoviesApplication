@@ -373,6 +373,13 @@ class WelcomeViewController: UIViewController {
         }
     }
 }
+
+extension Bool {
+    static func ^ (left: Bool, right: Bool) -> Bool {
+        return left != right
+    }
+}
+
 extension WelcomeViewController : ConnectorsViewDelegate {
     func signInFacebookButtonTapped() {
         facebookLogin()
@@ -448,6 +455,7 @@ extension WelcomeViewController : LogInViewDelegate {
     }
     
     func checkEmptyTextFieldsFromLogin() {
+        registeredUserFlag = false
         if ((userInfo.email == "" || userInfo.email == nil) || (userInfo.password == "" || userInfo.password == nil)) {
             showAlert(with: "All fields are required.", message: nil)
         } else {
@@ -465,6 +473,9 @@ extension WelcomeViewController : LogInViewDelegate {
                 if ((userInfo.email == user.email) && (userInfo.password == user.password)) {
                     print("Logged in.")
                     registeredUserFlag = true
+                    break
+                } else if ((userInfo.email != user.email) ^ (userInfo.password != user.password)) {
+                    showAlert(with: "The email or password is incorrect.", message: nil)
                     break
                 }
             }

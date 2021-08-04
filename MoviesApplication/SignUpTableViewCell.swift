@@ -50,7 +50,6 @@ class SignUpTableViewCell: UITableViewCell {
         showPassButton = UIButton()
         showPassButton.setImage(UIImage(named: "passIcon"), for: .normal)
         showPassButton.addTarget(self, action: #selector(checkingVisibilityOfPassword), for: .touchUpInside)
-        showPassButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -16)
         
         self.backgroundColor = .clear
         self.contentView.addSubview(textField)
@@ -82,6 +81,8 @@ class SignUpTableViewCell: UITableViewCell {
             textField.isSecureTextEntry = true
             textField.rightView = showPassButton
             textField.rightViewMode = .always
+        } else if type == .Email {
+            textField.autocapitalizationType = .none
         }
     }
     

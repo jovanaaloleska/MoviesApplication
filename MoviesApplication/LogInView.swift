@@ -105,6 +105,7 @@ class LogInView: UIView {
         registerButton.snp.makeConstraints { (make) in
             make.centerY.equalTo(registerLabel)
             make.left.equalTo(registerLabel.snp.right).offset(2)
+            make.top.equalTo(logInButton.snp.bottom).offset(15)
         }
     }
     
