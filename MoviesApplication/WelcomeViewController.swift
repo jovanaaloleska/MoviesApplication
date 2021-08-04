@@ -353,13 +353,12 @@ class WelcomeViewController: UIViewController {
                         if let fields = result as? [String:Any], let name = fields["first_name"] as? String, let lastname = fields["last_name"] as? String, let email = fields["email"] as? String {
                             
                             self.currentlyLoggedInUser = UserInfo(email: email, password: "", firstName: name, lastName: lastname)
-                            
+                            self.navigationController?.pushViewController(TabBarController(), animated: true)
                             do {
                                 let encoder = JSONEncoder()
                                 let data = try encoder.encode(self.currentlyLoggedInUser)
                                 UserPersistence.sharedInstance.setCurrrentActiveUser(currentUser: data)
-                                
-                            } catch {
+                      } catch {
                                 print("Unable to encode User info (\(error)")
                             }
                         } else {
@@ -471,7 +470,7 @@ extension WelcomeViewController : LogInViewDelegate {
             }
             for user in arrayUsers {
                 if ((userInfo.email == user.email) && (userInfo.password == user.password)) {
-                    print("Logged in.")
+                    self.navigationController?.pushViewController(TabBarController(), animated: true)
                     registeredUserFlag = true
                     break
                 } else if ((userInfo.email != user.email) ^ (userInfo.password != user.password)) {
@@ -506,7 +505,7 @@ extension WelcomeViewController : GIDSignInDelegate {
                 let encoder = JSONEncoder()
                 let data = try encoder.encode(self.currentlyLoggedInUser)
                 UserPersistence.sharedInstance.setCurrrentActiveUser(currentUser: data)
-                
+                self.navigationController?.pushViewController(TabBarController(), animated: true)
             } catch {
                 print("Unable to encode User info (\(error)")
             }

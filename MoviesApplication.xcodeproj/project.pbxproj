@@ -20,6 +20,11 @@
 		383A1E7E26A5ABD300D52627 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383A1E7C26A5ABD300D52627 /* LaunchScreen.storyboard */; };
 		384B910726B146B70011EDD1 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384B910626B146B70011EDD1 /* UserDefaults.swift */; };
 		3879CD2226AFEC2300D8821E /* TextfieldTypeEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3879CD2126AFEC2300D8821E /* TextfieldTypeEnumeration.swift */; };
+		387AA04626BAB2CD00DA607F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AA04526BAB2CD00DA607F /* TabBarController.swift */; };
+		387AA04926BAB42C00DA607F /* ShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AA04826BAB42C00DA607F /* ShowsViewController.swift */; };
+		387AA04C26BAB43C00DA607F /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AA04B26BAB43C00DA607F /* MoviesViewController.swift */; };
+		387AA04F26BAB44800DA607F /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AA04E26BAB44800DA607F /* DiscoverViewController.swift */; };
+		387AA05226BAB45B00DA607F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AA05126BAB45B00DA607F /* ProfileViewController.swift */; };
 		38C59DF926A6B59200C92AC0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C59DF826A6B59200C92AC0 /* Utilities.swift */; };
 		38C7702B26A9BFE100B9716A /* EnumerationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7702A26A9BFE100B9716A /* EnumerationAnimation.swift */; };
 		38E807EE26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E807ED26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift */; };
@@ -45,6 +50,11 @@
 		383A1E7F26A5ABD300D52627 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		384B910626B146B70011EDD1 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		3879CD2126AFEC2300D8821E /* TextfieldTypeEnumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldTypeEnumeration.swift; sourceTree = "<group>"; };
+		387AA04526BAB2CD00DA607F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		387AA04826BAB42C00DA607F /* ShowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsViewController.swift; sourceTree = "<group>"; };
+		387AA04B26BAB43C00DA607F /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
+		387AA04E26BAB44800DA607F /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		387AA05126BAB45B00DA607F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		38C59DF826A6B59200C92AC0 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		38C7702A26A9BFE100B9716A /* EnumerationAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumerationAnimation.swift; sourceTree = "<group>"; };
 		38E807ED26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTypeEnumeration.swift; sourceTree = "<group>"; };
@@ -103,6 +113,11 @@
 				383A1E7C26A5ABD300D52627 /* LaunchScreen.storyboard */,
 				383A1E7F26A5ABD300D52627 /* Info.plist */,
 				384B910626B146B70011EDD1 /* UserDefaults.swift */,
+				387AA04526BAB2CD00DA607F /* TabBarController.swift */,
+				387AA04826BAB42C00DA607F /* ShowsViewController.swift */,
+				387AA04B26BAB43C00DA607F /* MoviesViewController.swift */,
+				387AA04E26BAB44800DA607F /* DiscoverViewController.swift */,
+				387AA05126BAB45B00DA607F /* ProfileViewController.swift */,
 			);
 			path = MoviesApplication;
 			sourceTree = "<group>";
@@ -277,19 +292,24 @@
 			files = (
 				380A28CE26A704E20096FC19 /* LogInView.swift in Sources */,
 				383A1E7626A5ABD200D52627 /* WelcomeViewController.swift in Sources */,
+				387AA05226BAB45B00DA607F /* ProfileViewController.swift in Sources */,
 				3879CD2226AFEC2300D8821E /* TextfieldTypeEnumeration.swift in Sources */,
 				38C7702B26A9BFE100B9716A /* EnumerationAnimation.swift in Sources */,
 				383A1E7226A5ABD200D52627 /* AppDelegate.swift in Sources */,
 				380FBA7526AEBA0800C1CA4A /* UserInfo.swift in Sources */,
+				387AA04626BAB2CD00DA607F /* TabBarController.swift in Sources */,
 				380A28D126A704FC0096FC19 /* SignUpView.swift in Sources */,
+				387AA04F26BAB44800DA607F /* DiscoverViewController.swift in Sources */,
 				38C59DF926A6B59200C92AC0 /* Utilities.swift in Sources */,
 				38E807EE26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift in Sources */,
 				380A28D426A713510096FC19 /* SignUpTableViewCell.swift in Sources */,
 				383A1E7426A5ABD200D52627 /* SceneDelegate.swift in Sources */,
 				384B910726B146B70011EDD1 /* UserDefaults.swift in Sources */,
+				387AA04926BAB42C00DA607F /* ShowsViewController.swift in Sources */,
 				38E807F126AAF29F00C1C6F1 /* SubviewTypeEnumeration.swift in Sources */,
 				380A28CA26A6DCE60096FC19 /* ConnectorsView.swift in Sources */,
 				38F6FCEC26B0005A003183FF /* Extensions.swift in Sources */,
+				387AA04C26BAB43C00DA607F /* MoviesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

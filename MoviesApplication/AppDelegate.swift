@@ -17,11 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        navigationController = UINavigationController(rootViewController: WelcomeViewController())
-        navigationController.navigationBar.isHidden = true
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        UserPersistence.sharedInstance.getCurrentActiveUser() == nil ? (navigationController = UINavigationController(rootViewController: WelcomeViewController())) : (navigationController = UINavigationController(rootViewController: TabBarController()))
+//        navigationController.navigationBar.isHidden = true
+//        window?.rootViewController = navigationController
+//        window?.makeKeyAndVisible()
         // Override point for customization after application launch.
         ApplicationDelegate.shared.application(
             application,
