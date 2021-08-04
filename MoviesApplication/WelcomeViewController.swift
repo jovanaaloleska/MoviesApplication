@@ -488,6 +488,18 @@ extension WelcomeViewController : GIDSignInDelegate {
             }
             return
         }
+        if let firstName = user.profile.givenName, let lastName = user.profile.familyName, let eMail = user.profile.email {
+            self.currentlyLoggedInUser = UserInfo(email: eMail, password: "", firstName: firstName, lastName: lastName)
+            
+            do {
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(self.currentlyLoggedInUser)
+                UserPersistence.sharedInstance.setCurrrentActiveUser(currentUser: data)
+                
+            } catch {
+                print("Unable to encode User info (\(error)")
+            }
+        }
         
         print("Successfully Logged in with Google.")
         
