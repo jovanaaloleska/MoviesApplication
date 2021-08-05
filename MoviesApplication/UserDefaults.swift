@@ -41,4 +41,9 @@ class UserPersistence {
             return nil
         }
     }
+    
+    func deleteCurrentActiveUser() {
+        defaults.removeObject(forKey: "currentUser")
+    }
+    
 }

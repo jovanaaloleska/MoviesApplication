@@ -24,6 +24,9 @@ class WelcomeViewController: UIViewController {
     var registeredUserFlag = false
     var loginMenager = LoginManager()
     var currentlyLoggedInUser = UserInfo()
+    var googleLoggedIn = false
+    static var facebookLoggedIn = false
+    static var appLoggedIn = false
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -357,7 +360,7 @@ class WelcomeViewController: UIViewController {
                                 let encoder = JSONEncoder()
                                 let data = try encoder.encode(self.currentlyLoggedInUser)
                                 UserPersistence.sharedInstance.setCurrrentActiveUser(currentUser: data)
-                      } catch {
+                            } catch {
                                 print("Unable to encode User info (\(error)")
                             }
                         } else {
@@ -501,7 +504,6 @@ extension WelcomeViewController : GIDSignInDelegate {
         }
         if let firstName = user.profile.givenName, let lastName = user.profile.familyName, let eMail = user.profile.email, let profilePicture = user.profile.imageURL(withDimension: 300) {
             self.currentlyLoggedInUser = UserInfo(email: eMail, password: "", firstName: firstName, lastName: lastName, profilePicture: nil, imageFbUrl: nil, imageGoogleUrl: profilePicture)
-            
             do {
                 let encoder = JSONEncoder()
                 let data = try encoder.encode(self.currentlyLoggedInUser)
@@ -511,7 +513,6 @@ extension WelcomeViewController : GIDSignInDelegate {
                 print("Unable to encode User info (\(error)")
             }
         }
-        
         print("Successfully Logged in with Google.")
         
         // Post notification after user successfully sign in

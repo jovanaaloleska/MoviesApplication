@@ -64,6 +64,7 @@ class ProfileViewController: UIViewController {
         signOutButton.setTitle("Sign Out", for: .normal)
         signOutButton.backgroundColor = .systemYellow
         signOutButton.layer.cornerRadius = 5
+        signOutButton.addTarget(self, action: #selector(signingOut), for: .touchUpInside)
         
         profilePictureImageView = UIImageView()
         profilePictureImageView.backgroundColor = .white
@@ -121,6 +122,10 @@ class ProfileViewController: UIViewController {
             make.left.equalTo(view).offset(20)
             make.right.equalTo(view).offset(-20)
         }
+    }
+    @objc func signingOut() {
+        UserPersistence.sharedInstance.deleteCurrentActiveUser()
+        self.navigationController?.pushViewController(WelcomeViewController(), animated: true)
     }
     
     func decodeDataToUser(data: Data?) {
