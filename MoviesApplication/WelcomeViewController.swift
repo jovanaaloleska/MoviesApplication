@@ -347,12 +347,11 @@ class WelcomeViewController: UIViewController {
             if (result!.isCancelled) {
                 
             } else if ((result?.grantedPermissions.contains("email")) ?? false) {
-                let request = GraphRequest(graphPath: "me", parameters: ["fields":"email,first_name,last_name"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: .get)
+                let request = GraphRequest(graphPath: "me", parameters: ["fields":"email,first_name,last_name,picture"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: .get)
                 request.start { (connection, result, error) in
                     if (error == nil) {
-                        if let fields = result as? [String:Any], let name = fields["first_name"] as? String, let lastname = fields["last_name"] as? String, let email = fields["email"] as? String {
-                            
-                            self.currentlyLoggedInUser = UserInfo(email: email, password: "", firstName: name, lastName: lastname)
+                        if let fields = result as? [String:Any], let name = fields["first_name"] as? String, let lastname = fields["last_name"] as? String, let email = fields["email"] as? String, let pictureDict = fields["picture"] as? [String : Any], let pictureData = pictureDict["data"] as? [String:Any], let picture = pictureData["url"] as? String {
+                            self.currentlyLoggedInUser = UserInfo(email: email, password: "", firstName: name, lastName: lastname, profilePicture: nil, imageFbUrl: picture, imageGoogleUrl: nil)
                             self.navigationController?.pushViewController(TabBarController(), animated: true)
                             do {
                                 let encoder = JSONEncoder()
@@ -470,6 +469,8 @@ extension WelcomeViewController : LogInViewDelegate {
             }
             for user in arrayUsers {
                 if ((userInfo.email == user.email) && (userInfo.password == user.password)) {
+                    let encodedUser = Utilities.sharedInstance.encodeUserToData(user: user)
+                    UserPersistence.sharedInstance.setCurrrentActiveUser(currentUser: encodedUser)
                     self.navigationController?.pushViewController(TabBarController(), animated: true)
                     registeredUserFlag = true
                     break
@@ -498,8 +499,8 @@ extension WelcomeViewController : GIDSignInDelegate {
             }
             return
         }
-        if let firstName = user.profile.givenName, let lastName = user.profile.familyName, let eMail = user.profile.email {
-            self.currentlyLoggedInUser = UserInfo(email: eMail, password: "", firstName: firstName, lastName: lastName)
+        if let firstName = user.profile.givenName, let lastName = user.profile.familyName, let eMail = user.profile.email, let profilePicture = user.profile.imageURL(withDimension: 300) {
+            self.currentlyLoggedInUser = UserInfo(email: eMail, password: "", firstName: firstName, lastName: lastName, profilePicture: nil, imageFbUrl: nil, imageGoogleUrl: profilePicture)
             
             do {
                 let encoder = JSONEncoder()

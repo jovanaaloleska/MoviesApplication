@@ -13,14 +13,20 @@ class UserInfo: Codable {
     var password: String?
     var firstName: String?
     var lastName: String?
+    var profilePicture: Data?
+    var imageFbUrl: String?
+    var imageGoogleUrl: URL?
 
     init() {
     }
     
-    init(email: String, password: String, firstName: String, lastName: String) {
+    init(email: String, password: String, firstName: String, lastName: String, profilePicture: Data?, imageFbUrl: String?, imageGoogleUrl: URL?) {
         self.email = email
         self.password = password
         self.firstName = firstName
         self.lastName = lastName
+        self.profilePicture = profilePicture
+        self.imageFbUrl = imageFbUrl
+        self.imageGoogleUrl = imageGoogleUrl
     }
 }

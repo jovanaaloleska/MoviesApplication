@@ -49,24 +49,6 @@ class Utilities {
         return textField
     }
     
-    //MARK: - CHECK WHICH IPHONE TYPE
-    func isIphoneType(type: PhoneType) -> Bool {
-        let bounds = UIScreen.main.bounds
-        let maxLength = max(bounds.size.height, bounds.size.width)
-        switch type {
-        case .Small:
-            return (maxLength <= 568)
-        case .Medium:
-            return (maxLength > 568) && (maxLength <= 667)
-        case .Large:
-            return (maxLength > 667) && (maxLength <= 736)
-        case .XLarge:
-            return (maxLength > 736) && (maxLength <= 895)
-        case .MaxLarge:
-            return (maxLength > 895)
-        }
-    }
-    
     func getIphoneType() -> PhoneType {
         let bounds = UIScreen.main.bounds
         let maxLength = max(bounds.size.height, bounds.size.width)
@@ -81,5 +63,21 @@ class Utilities {
         } else {
             return .MaxLarge
         }
+    }
+    
+    func encodingToData(source: UIImage) -> Data? {
+        return source.pngData()
+    }
+    
+    func encodeUserToData(user: UserInfo) -> Data {
+        var data = Data()
+        do {
+            let encoder = JSONEncoder()
+            data = try encoder.encode(user)
+           // UserPersistence.sharedInstance.setCurrrentActiveUser(currentUser: data)
+        } catch {
+            print("Unable to encode User info (\(error)")
+        }
+        return data
     }
 }
