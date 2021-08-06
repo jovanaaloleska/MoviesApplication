@@ -31,7 +31,7 @@ class ProfileViewController: UIViewController {
         setUpConstraints()
         // Do any additional setup after loading the view.
     }
-    
+    // MARK:- Setting Up Views And Constraints
     func setUpViews() {
         
         topView = UIView()
@@ -124,22 +124,14 @@ class ProfileViewController: UIViewController {
             make.right.equalTo(view).offset(-20)
         }
     }
+    
     @objc func signingOut() {
         UserPersistence.sharedInstance.setFlagLoggedIn(flagUserLoggedIn: false)
         self.navigationController?.pushViewController(WelcomeViewController(), animated: true)
     }
     
-    func decodeDataToUser(data: Data?) {
-        guard let userdata = data else { return }
-        do {
-            let decoder = JSONDecoder()
-            user = try decoder.decode(UserInfo.self, from: userdata)
-            
-        } catch {
-            print("Unable to decode Array of Users (\(error)")
-        }
-    }
     
+    // MARK:- Image picker implementation
     @objc func showActionSheet() {
         let alertSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertSheet.addAction(UIAlertAction(title: "Select from gallery", style: .default, handler: { _ in
@@ -170,6 +162,18 @@ class ProfileViewController: UIViewController {
         imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true, completion: nil)
     }
+    // MARK:- Decoding data functions
+    func decodeDataToUser(data: Data?) {
+        guard let userdata = data else { return }
+        do {
+            let decoder = JSONDecoder()
+            user = try decoder.decode(UserInfo.self, from: userdata)
+            
+        } catch {
+            print("Unable to decode Array of Users (\(error)")
+        }
+    }
+    
     func decodeDataForUserArrayFromUserDefaults() {
         if let data = UserPersistence.sharedInstance.defaults.data(forKey: "arrayUsers")
         {
@@ -182,6 +186,7 @@ class ProfileViewController: UIViewController {
             }
         }
     }
+   
 }
 
 extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {

@@ -159,7 +159,7 @@ extension SignUpView : UITableViewDelegate, UITableViewDataSource {
         return 50.0
     }
 }
-
+// MARK:- Delegate functions from SignUpTableViewCell
 extension SignUpView : SignUpTableViewCellDelegate {
     
     func goToNextTextField(type: TextfieldType) {

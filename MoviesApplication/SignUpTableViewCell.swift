@@ -90,7 +90,7 @@ class SignUpTableViewCell: UITableViewCell {
         textField.isSecureTextEntry == true ? (textField.isSecureTextEntry = false) : (textField.isSecureTextEntry = true)
     }
 }
-
+// MARK:- Delegate functions
 extension SignUpTableViewCell : UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {

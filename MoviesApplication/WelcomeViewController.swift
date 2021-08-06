@@ -164,7 +164,7 @@ class WelcomeViewController: UIViewController {
             return 2.2
         }
     }
-    
+    // MARK:- Functions to showup and hide the keyboard
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if (self.logInViewFlag == true) {
@@ -236,7 +236,7 @@ class WelcomeViewController: UIViewController {
         view.endEditing(true)
     }
     
-    
+    // MARK:- Functions for animating the subviews of WelcomeViewController
     @objc func showLogInView() {
         self.logInViewFlag = true
         UIView.animate(withDuration: 0.5, animations: {
@@ -341,7 +341,7 @@ class WelcomeViewController: UIViewController {
             }
         }
     }
-    
+    // MARK:- Facebook Login implementation
     func facebookLogin() {
         let loginManager = LoginManager()
         loginManager.logOut()
@@ -381,7 +381,7 @@ extension Bool {
         return left != right
     }
 }
-
+// MARK:- Delegate functions from ConnectorsView
 extension WelcomeViewController : ConnectorsViewDelegate {
     func signInFacebookButtonTapped() {
         facebookLogin()
@@ -399,7 +399,7 @@ extension WelcomeViewController : ConnectorsViewDelegate {
         hideConnectorsView(viewType: .signUpView)
     }
 }
-
+// MARK:- Delegate functions from SignUpView
 extension WelcomeViewController : SignUpViewDelegate {
     func checkEmptyTextFields() {
         if checkForEmptyDataForRegister(user: userInfo) {
@@ -443,7 +443,7 @@ extension WelcomeViewController : SignUpViewDelegate {
         }
     }
 }
-
+// MARK:- Delegate functions from LogInView
 extension WelcomeViewController : LogInViewDelegate {
     func goToSignUpView() {
         hideLogInView()
@@ -490,7 +490,7 @@ extension WelcomeViewController : LogInViewDelegate {
         }
     }
 }
-
+// MARK:- Google Login
 extension WelcomeViewController : GIDSignInDelegate {
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {

@@ -35,7 +35,7 @@ class LogInView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    // MARK:- Setting Up Views And Constraints
     func setUpViews() {
         blurEffect = UIBlurEffect(style: .regular)
         blurredEffectView = UIVisualEffectView(effect: blurEffect)
@@ -135,6 +135,8 @@ extension LogInView : UITableViewDelegate, UITableViewDataSource {
         return 50.0
     }
 }
+
+// MARK:- Delegate functions from SignUpTableViewCell
 extension LogInView : SignUpTableViewCellDelegate {
     func goToNextTextField(type: TextfieldType) {
         switch type {
