@@ -9,6 +9,8 @@ import Foundation
 
 class UserPersistence {
     
+    var flag = Bool()
+    
     static let sharedInstance = UserPersistence()
     var defaults = UserDefaults.standard
     var arrayUsers = [UserInfo]()
@@ -42,8 +44,12 @@ class UserPersistence {
         }
     }
     
-    func deleteCurrentActiveUser() {
-        defaults.removeObject(forKey: "currentUser")
+    func setFlagLoggedIn(flagUserLoggedIn: Bool) {
+        defaults.setValue(flagUserLoggedIn, forKey: "flagUserLoggedIn")
+    }
+    
+    func getFlagLoggedIn() -> Bool {
+        return defaults.bool(forKey: "flagUserLoggedIn")
     }
     
 }

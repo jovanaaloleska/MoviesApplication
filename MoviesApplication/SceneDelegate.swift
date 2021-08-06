@@ -16,7 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let windowScene = scene as? UIWindowScene {
               let window = UIWindow(windowScene: windowScene)
-            UserPersistence.sharedInstance.getCurrentActiveUser() == nil ? (navigationController = UINavigationController(rootViewController: WelcomeViewController())) : (navigationController = UINavigationController(rootViewController: TabBarController()))
+            UserPersistence.sharedInstance.getFlagLoggedIn() == false ? (navigationController = UINavigationController(rootViewController: WelcomeViewController())) : (navigationController = UINavigationController(rootViewController: TabBarController()))
+            print(UserPersistence.sharedInstance.getFlagLoggedIn())
             navigationController.navigationBar.isHidden = true
             window.rootViewController = navigationController
                self.window = window

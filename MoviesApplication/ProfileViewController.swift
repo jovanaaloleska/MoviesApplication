@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ProfileViewController: UIViewController {
     
@@ -16,9 +17,11 @@ class ProfileViewController: UIViewController {
     var mailLabel: UILabel!
     var signOutButton: UIButton!
     var editProfileLabel: UILabel!
-    var user: UserInfo!
+    var user = UserInfo()
     var imagePicker = UIImagePickerController()
     var profileImage = UIImage()
+    var arrayUsers = [UserInfo]()
+    var counterUsers = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +79,16 @@ class ProfileViewController: UIViewController {
         if let profileImage = user.profilePicture {
             profilePictureImageView.image = UIImage(data: profileImage)
         }
+        if let profileFbImage = user.imageFbUrl {
+            print(profileFbImage)
+            if let url = URL(string: "https://graph.facebook.com/\(self.user.id ?? "")/picture?type=large"){
+                print(self.user.id)
+                profilePictureImageView.kf.setImage(with: url, options: [.scaleFactor(UIScreen.main.scale), .transition(.flipFromBottom(0.1))])
+            }
+        }
+        if let profileGoogleImage = user.imageGoogleUrl {
+            profilePictureImageView.kf.setImage(with: profileGoogleImage, options: [.scaleFactor(UIScreen.main.scale), .transition(.flipFromBottom(0.1))])
+        }
         
         imagePicker.delegate = self
         
@@ -124,7 +137,7 @@ class ProfileViewController: UIViewController {
         }
     }
     @objc func signingOut() {
-        UserPersistence.sharedInstance.deleteCurrentActiveUser()
+        UserPersistence.sharedInstance.setFlagLoggedIn(flagUserLoggedIn: false)
         self.navigationController?.pushViewController(WelcomeViewController(), animated: true)
     }
     
@@ -169,6 +182,18 @@ class ProfileViewController: UIViewController {
         imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true, completion: nil)
     }
+    func decodeDataForUserArrayFromUserDefaults() {
+        if let data = UserPersistence.sharedInstance.defaults.data(forKey: "arrayUsers")
+        {
+            do {
+                let decoder = JSONDecoder()
+                arrayUsers = try decoder.decode([UserInfo].self, from: data)
+                
+            } catch {
+                print("Unable to decode Array of Users (\(error)")
+            }
+        }
+    }
 }
 
 extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -178,7 +203,34 @@ extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationC
         }
         profilePictureImageView.image = profileImage
         user.profilePicture = Utilities.sharedInstance.encodingToData(source: profileImage)
+// setting the updated user
         UserPersistence.sharedInstance.setCurrrentActiveUser(currentUser:  Utilities.sharedInstance.encodeUserToData(user: user))
+// addding the new updated user to the array
+        decodeDataForUserArrayFromUserDefaults()
+        for userInfo in arrayUsers {
+            if ((user.email == userInfo.email) && (user.password == userInfo.password)) {
+               // let encodedUser = Utilities.sharedInstance.encodeUserToData(user: user)
+           //     UserPersistence.sharedInstance.setCurrrentActiveUser(currentUser: encodedUser)
+                if let safeData = UserPersistence.sharedInstance.getCurrentActiveUser(){
+                    decodeDataToUser(data: safeData)
+                    arrayUsers.remove(at: counterUsers)
+                    arrayUsers.append(user)
+                    do {
+                        let encoder = JSONEncoder()
+                        let data = try encoder.encode(arrayUsers)
+                        UserPersistence.sharedInstance.setArrayUsers(arrayUsers: data)
+                    } catch {
+                        print("Unable to encode User info (\(error)")
+                    }
+                }
+                break
+            } else if ((userInfo.email != user.email) ^ (userInfo.password != user.password)) {
+                showAlert(with: "The email or password is incorrect.", message: nil)
+                break
+            }
+            counterUsers += 1
+        }
+        counterUsers = 0
         
         self.dismiss(animated: true, completion: nil)
     }
