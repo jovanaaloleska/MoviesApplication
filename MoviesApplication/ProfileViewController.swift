@@ -37,44 +37,33 @@ class ProfileViewController: UIViewController {
         topView = UIView()
         topView.backgroundColor = .systemYellow
         
-        editProfileLabel = UILabel()
-        editProfileLabel.text = "Profile"
-        editProfileLabel.textColor = .white
+        editProfileLabel = Utilities.createLabel(title: "Profile", backgroundColor: .clear, cornerRadius: 0, textColor: .white)
         editProfileLabel.font = .boldSystemFont(ofSize: 25)
-        
-        selectProfilePictureButton = UIButton()
+     
+        selectProfilePictureButton = Utilities.createButton(title: "", backgroundColor: .systemYellow, cornerRadius: 8, titleColor: .clear)
         selectProfilePictureButton.setImage(UIImage(named: "cameraIcon"), for: .normal)
-        selectProfilePictureButton.backgroundColor = .systemYellow
-        selectProfilePictureButton.layer.cornerRadius = 8
         selectProfilePictureButton.addTarget(self, action: #selector(showActionSheet), for: .touchUpInside)
         
-        nameLabel = UILabel()
+        nameLabel = Utilities.createLabel(title: "", backgroundColor: .clear, cornerRadius: 0, textColor: .white)
         if let firstName = user.firstName, let lastName = user.lastName {
             nameLabel.text = "\(firstName) \(lastName)"
         }
-        nameLabel.textColor = .white
         nameLabel.font = .boldSystemFont(ofSize: 19)
         
-        mailLabel = UILabel()
-        
+        mailLabel = Utilities.createLabel(title: "", backgroundColor: .clear, cornerRadius: 0, textColor: .white)
         if let email = user.email {
             mailLabel.text = "\(email)"
         }
-        mailLabel.textColor = .white
         mailLabel.font = .boldSystemFont(ofSize: 17)
         
-        signOutButton = UIButton()
-        signOutButton.setTitle("Sign Out", for: .normal)
-        signOutButton.backgroundColor = .systemYellow
-        signOutButton.layer.cornerRadius = 5
+        signOutButton = Utilities.createButton(title: "Sign Out", backgroundColor: .systemYellow, cornerRadius: 5, titleColor: .white)
         signOutButton.addTarget(self, action: #selector(signingOut), for: .touchUpInside)
         
-        profilePictureImageView = UIImageView()
+        profilePictureImageView = Utilities.createImageView(image: "", contentMode: .scaleAspectFill)
         profilePictureImageView.backgroundColor = .white
         profilePictureImageView.layer.cornerRadius = 80
         profilePictureImageView.clipsToBounds = true
         profilePictureImageView.layer.borderWidth = 5.0
-        profilePictureImageView.contentMode = .scaleAspectFill
         
         if let profileImage = user.profilePicture {
             profilePictureImageView.image = UIImage(data: profileImage)
@@ -82,7 +71,6 @@ class ProfileViewController: UIViewController {
         if let profileFbImage = user.imageFbUrl {
             print(profileFbImage)
             if let url = URL(string: "https://graph.facebook.com/\(self.user.id ?? "")/picture?type=large"){
-                print(self.user.id)
                 profilePictureImageView.kf.setImage(with: url, options: [.scaleFactor(UIScreen.main.scale), .transition(.flipFromBottom(0.1))])
             }
         }
