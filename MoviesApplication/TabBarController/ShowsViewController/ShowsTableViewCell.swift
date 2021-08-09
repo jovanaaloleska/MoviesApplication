@@ -1,0 +1,73 @@
+//
+//  MoviesTableViewCell.swift
+//  MoviesApplication
+//
+//  Created by Jovana Loleska on 8/9/21.
+//
+
+import UIKit
+
+class ShowsTableViewCell: UITableViewCell {
+    
+    var collectionView: UICollectionView!
+    var layout: UICollectionViewFlowLayout!
+    var showsBackgrounds = ["bojackHorseman", "dark", "emilyInParis", "laCasaDePapel", "lupin", "outerBanks", "peakyBlinders", "strangerThings", "theCrown", "theWitcher"]
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setUpViews()
+        setUpConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setUpViews() {
+        layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+        layout.scrollDirection = .horizontal
+        
+        collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(ShowsCollectionViewCell.self, forCellWithReuseIdentifier: "showsCollectionViewCell")
+        collectionView.backgroundColor = .clear
+        
+        self.contentView.addSubview(collectionView)
+    }
+    
+    func setUpConstraints() {
+        collectionView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self)
+        }
+    }
+}
+
+extension ShowsTableViewCell :  UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (collectionView.frame.width-30)/2, height: (collectionView.frame.width)/2)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return showsBackgrounds.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "showsCollectionViewCell", for: indexPath as IndexPath) as! ShowsCollectionViewCell
+        cell.backgroundColor = UIColor.clear // make cell more visible in our example project
+        cell.layer.cornerRadius = 8
+        cell.setUpCell(showBackground: showsBackgrounds[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+}
+

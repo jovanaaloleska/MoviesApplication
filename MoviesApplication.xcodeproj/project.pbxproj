@@ -19,12 +19,14 @@
 		383A1E7B26A5ABD300D52627 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 383A1E7A26A5ABD300D52627 /* Assets.xcassets */; };
 		383A1E7E26A5ABD300D52627 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 383A1E7C26A5ABD300D52627 /* LaunchScreen.storyboard */; };
 		384B910726B146B70011EDD1 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384B910626B146B70011EDD1 /* UserDefaults.swift */; };
+		3879A2D026C14DBD00F1D52F /* ShowsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3879A2CF26C14DBD00F1D52F /* ShowsCollectionViewCell.swift */; };
 		3879CD2226AFEC2300D8821E /* TextfieldTypeEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3879CD2126AFEC2300D8821E /* TextfieldTypeEnumeration.swift */; };
 		387AA04626BAB2CD00DA607F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AA04526BAB2CD00DA607F /* TabBarController.swift */; };
 		387AA04926BAB42C00DA607F /* ShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AA04826BAB42C00DA607F /* ShowsViewController.swift */; };
 		387AA04C26BAB43C00DA607F /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AA04B26BAB43C00DA607F /* MoviesViewController.swift */; };
 		387AA04F26BAB44800DA607F /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AA04E26BAB44800DA607F /* DiscoverViewController.swift */; };
 		387AA05226BAB45B00DA607F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AA05126BAB45B00DA607F /* ProfileViewController.swift */; };
+		38AF3A1726C131BE0004D829 /* ShowsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AF3A1626C131BE0004D829 /* ShowsTableViewCell.swift */; };
 		38C59DF926A6B59200C92AC0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C59DF826A6B59200C92AC0 /* Utilities.swift */; };
 		38C7702B26A9BFE100B9716A /* EnumerationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7702A26A9BFE100B9716A /* EnumerationAnimation.swift */; };
 		38E807EE26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E807ED26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift */; };
@@ -49,12 +51,14 @@
 		383A1E7D26A5ABD300D52627 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		383A1E7F26A5ABD300D52627 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		384B910626B146B70011EDD1 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		3879A2CF26C14DBD00F1D52F /* ShowsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsCollectionViewCell.swift; sourceTree = "<group>"; };
 		3879CD2126AFEC2300D8821E /* TextfieldTypeEnumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldTypeEnumeration.swift; sourceTree = "<group>"; };
 		387AA04526BAB2CD00DA607F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		387AA04826BAB42C00DA607F /* ShowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsViewController.swift; sourceTree = "<group>"; };
 		387AA04B26BAB43C00DA607F /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		387AA04E26BAB44800DA607F /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		387AA05126BAB45B00DA607F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		38AF3A1626C131BE0004D829 /* ShowsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsTableViewCell.swift; sourceTree = "<group>"; };
 		38C59DF826A6B59200C92AC0 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		38C7702A26A9BFE100B9716A /* EnumerationAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumerationAnimation.swift; sourceTree = "<group>"; };
 		38E807ED26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTypeEnumeration.swift; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 				38F6FCEB26B0005A003183FF /* Extensions.swift */,
 				3879CD2026AFEBDC00D8821E /* Enumerations */,
 				38F6FCF926B015D4003183FF /* Model */,
+				38AF3A0E26C12D5E0004D829 /* TabBarController */,
 				383A1E7526A5ABD200D52627 /* WelcomeViewController.swift */,
 				380A28C926A6DCE60096FC19 /* ConnectorsView.swift */,
 				380A28D026A704FC0096FC19 /* SignUpView.swift */,
@@ -113,11 +118,6 @@
 				383A1E7C26A5ABD300D52627 /* LaunchScreen.storyboard */,
 				383A1E7F26A5ABD300D52627 /* Info.plist */,
 				384B910626B146B70011EDD1 /* UserDefaults.swift */,
-				387AA04526BAB2CD00DA607F /* TabBarController.swift */,
-				387AA04826BAB42C00DA607F /* ShowsViewController.swift */,
-				387AA04B26BAB43C00DA607F /* MoviesViewController.swift */,
-				387AA04E26BAB44800DA607F /* DiscoverViewController.swift */,
-				387AA05126BAB45B00DA607F /* ProfileViewController.swift */,
 			);
 			path = MoviesApplication;
 			sourceTree = "<group>";
@@ -131,6 +131,52 @@
 				3879CD2126AFEC2300D8821E /* TextfieldTypeEnumeration.swift */,
 			);
 			path = Enumerations;
+			sourceTree = "<group>";
+		};
+		38AF3A0E26C12D5E0004D829 /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				387AA04526BAB2CD00DA607F /* TabBarController.swift */,
+				38AF3A1226C12E240004D829 /* ProfileViewController */,
+				38AF3A1126C12D970004D829 /* DiscoverViewController */,
+				38AF3A1026C12D8D0004D829 /* MoviesViewController */,
+				38AF3A0F26C12D800004D829 /* ShowsViewController */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		38AF3A0F26C12D800004D829 /* ShowsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				387AA04826BAB42C00DA607F /* ShowsViewController.swift */,
+				38AF3A1626C131BE0004D829 /* ShowsTableViewCell.swift */,
+				3879A2CF26C14DBD00F1D52F /* ShowsCollectionViewCell.swift */,
+			);
+			path = ShowsViewController;
+			sourceTree = "<group>";
+		};
+		38AF3A1026C12D8D0004D829 /* MoviesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				387AA04B26BAB43C00DA607F /* MoviesViewController.swift */,
+			);
+			path = MoviesViewController;
+			sourceTree = "<group>";
+		};
+		38AF3A1126C12D970004D829 /* DiscoverViewController */ = {
+			isa = PBXGroup;
+			children = (
+				387AA04E26BAB44800DA607F /* DiscoverViewController.swift */,
+			);
+			path = DiscoverViewController;
+			sourceTree = "<group>";
+		};
+		38AF3A1226C12E240004D829 /* ProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				387AA05126BAB45B00DA607F /* ProfileViewController.swift */,
+			);
+			path = ProfileViewController;
 			sourceTree = "<group>";
 		};
 		38F6FCF926B015D4003183FF /* Model */ = {
@@ -293,8 +339,10 @@
 				380A28CE26A704E20096FC19 /* LogInView.swift in Sources */,
 				383A1E7626A5ABD200D52627 /* WelcomeViewController.swift in Sources */,
 				387AA05226BAB45B00DA607F /* ProfileViewController.swift in Sources */,
+				3879A2D026C14DBD00F1D52F /* ShowsCollectionViewCell.swift in Sources */,
 				3879CD2226AFEC2300D8821E /* TextfieldTypeEnumeration.swift in Sources */,
 				38C7702B26A9BFE100B9716A /* EnumerationAnimation.swift in Sources */,
+				38AF3A1726C131BE0004D829 /* ShowsTableViewCell.swift in Sources */,
 				383A1E7226A5ABD200D52627 /* AppDelegate.swift in Sources */,
 				380FBA7526AEBA0800C1CA4A /* UserInfo.swift in Sources */,
 				387AA04626BAB2CD00DA607F /* TabBarController.swift in Sources */,
