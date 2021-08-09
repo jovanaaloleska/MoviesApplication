@@ -56,6 +56,7 @@ class WelcomeViewController: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
+    
     // MARK:- Setting Up Views And Constraints
     func setUpViews() {
         backgroundImageView = Utilities.createImageView(image: "welcomeScreenBackground", contentMode: .scaleAspectFill)
@@ -164,6 +165,7 @@ class WelcomeViewController: UIViewController {
             return 2.2
         }
     }
+    
     // MARK:- Functions to showup and hide the keyboard
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
@@ -341,6 +343,7 @@ class WelcomeViewController: UIViewController {
             }
         }
     }
+    
     // MARK:- Facebook Login implementation
     func facebookLogin() {
         let loginManager = LoginManager()
@@ -381,6 +384,7 @@ extension Bool {
         return left != right
     }
 }
+
 // MARK:- Delegate functions from ConnectorsView
 extension WelcomeViewController : ConnectorsViewDelegate {
     func signInFacebookButtonTapped() {
@@ -399,6 +403,7 @@ extension WelcomeViewController : ConnectorsViewDelegate {
         hideConnectorsView(viewType: .signUpView)
     }
 }
+
 // MARK:- Delegate functions from SignUpView
 extension WelcomeViewController : SignUpViewDelegate {
     func checkEmptyTextFields() {
@@ -443,6 +448,7 @@ extension WelcomeViewController : SignUpViewDelegate {
         }
     }
 }
+
 // MARK:- Delegate functions from LogInView
 extension WelcomeViewController : LogInViewDelegate {
     func goToSignUpView() {
@@ -490,6 +496,7 @@ extension WelcomeViewController : LogInViewDelegate {
         }
     }
 }
+
 // MARK:- Google Login
 extension WelcomeViewController : GIDSignInDelegate {
     

@@ -10,7 +10,6 @@ import Kingfisher
 
 class ProfileViewController: UIViewController {
     
-    var topView: UIView!
     var profilePictureImageView: UIImageView!
     var selectProfilePictureButton: UIButton!
     var nameLabel: UILabel!
@@ -23,23 +22,23 @@ class ProfileViewController: UIViewController {
     var arrayUsers = [UserInfo]()
     var counterUsers = 0
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.black
         decodeDataToUser(data: UserPersistence.sharedInstance.getCurrentActiveUser())
         setUpViews()
         setUpConstraints()
+        setUpNavigation()
         // Do any additional setup after loading the view.
     }
-    // MARK:- Setting Up Views And Constraints
+    
+    // MARK:- Setting Up Views
     func setUpViews() {
+        view.backgroundColor = .black
         
-        topView = UIView()
-        topView.backgroundColor = .systemYellow
-        
-        editProfileLabel = Utilities.createLabel(title: "Profile", backgroundColor: .clear, cornerRadius: 0, textColor: .white)
+        editProfileLabel = Utilities.createLabel(title: "My Profile", backgroundColor: .clear, cornerRadius: 0, textColor: .white)
         editProfileLabel.font = .boldSystemFont(ofSize: 25)
-     
+        
         selectProfilePictureButton = Utilities.createButton(title: "", backgroundColor: .systemYellow, cornerRadius: 8, titleColor: .clear)
         selectProfilePictureButton.setImage(UIImage(named: "cameraIcon"), for: .normal)
         selectProfilePictureButton.addTarget(self, action: #selector(showActionSheet), for: .touchUpInside)
@@ -85,22 +84,13 @@ class ProfileViewController: UIViewController {
         view.addSubview(nameLabel)
         view.addSubview(mailLabel)
         view.addSubview(signOutButton)
-        view.addSubview(topView)
         view.addSubview(editProfileLabel)
     }
     
+    // MARK:- Setting Up Constraints
     func setUpConstraints() {
-        topView.snp.makeConstraints { (make) in
-            make.top.equalTo(view)
-            make.height.equalTo(130)
-            make.width.equalTo(view)
-        }
-        editProfileLabel.snp.makeConstraints { (make) in
-            make.bottom.equalTo(topView.snp.bottom).offset(-25)
-            make.left.equalTo(view).offset(50)
-        }
         profilePictureImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(topView.snp.bottom).offset(50)
+            make.top.equalTo(view).offset(150)
             make.centerX.equalTo(view)
             make.height.width.equalTo(160)
         }
@@ -125,11 +115,20 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    // MARK:- SetUp Navigation
+    func setUpNavigation() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.tintColor = .red
+        self.navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.isHidden = false
+        self.navigationItem.title = "Profile"
+    }
+    
     @objc func signingOut() {
         UserPersistence.sharedInstance.setFlagLoggedIn(flagUserLoggedIn: false)
         self.navigationController?.pushViewController(WelcomeViewController(), animated: true)
     }
-    
     
     // MARK:- Image picker implementation
     @objc func showActionSheet() {
@@ -162,6 +161,7 @@ class ProfileViewController: UIViewController {
         imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true, completion: nil)
     }
+    
     // MARK:- Decoding data functions
     func decodeDataToUser(data: Data?) {
         guard let userdata = data else { return }
@@ -186,9 +186,10 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-   
+    
 }
 
+// MARK:- UIImagePickerController, UINavigationController delegate methods
 extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let tempImage: UIImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
@@ -196,14 +197,14 @@ extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationC
         }
         profilePictureImageView.image = profileImage
         user.profilePicture = Utilities.sharedInstance.encodingToData(source: profileImage)
-// setting the updated user
+        // setting the updated user
         UserPersistence.sharedInstance.setCurrrentActiveUser(currentUser:  Utilities.sharedInstance.encodeUserToData(user: user))
-// addding the new updated user to the array
+        // addding the new updated user to the array
         decodeDataForUserArrayFromUserDefaults()
         for userInfo in arrayUsers {
             if ((user.email == userInfo.email) && (user.password == userInfo.password)) {
-               // let encodedUser = Utilities.sharedInstance.encodeUserToData(user: user)
-           //     UserPersistence.sharedInstance.setCurrrentActiveUser(currentUser: encodedUser)
+                // let encodedUser = Utilities.sharedInstance.encodeUserToData(user: user)
+                //     UserPersistence.sharedInstance.setCurrrentActiveUser(currentUser: encodedUser)
                 if let safeData = UserPersistence.sharedInstance.getCurrentActiveUser(){
                     decodeDataToUser(data: safeData)
                     arrayUsers.remove(at: counterUsers)

@@ -8,19 +8,20 @@
 import UIKit
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let showsViewController = ShowsViewController()
         let moviesViewController = MoviesViewController()
         let discoverViewController = DiscoverViewController()
-        let profileViewController = ProfileViewController()
         
         let showsIcon = UITabBarItem(title: "Shows", image: UIImage(named: "tvshowIcon"), selectedImage: UIImage(named: "tvshowIcon"))
         let moviesIcon = UITabBarItem(title: "Movies", image: UIImage(named: "movieIcon"), selectedImage: UIImage(named: "movieIcon"))
         let discoverIcon = UITabBarItem(title: "Discover", image: UIImage(named: "searchIcon"), selectedImage: UIImage(named: "searchIcon"))
         let profileIcon = UITabBarItem(title: "Profile", image: UIImage(named: "IconUser"), selectedImage: UIImage(named: "IconUser"))
+        
+        let profileViewController = UINavigationController(rootViewController: ProfileViewController())
         
         showsViewController.tabBarItem = showsIcon
         moviesViewController.tabBarItem = moviesIcon
