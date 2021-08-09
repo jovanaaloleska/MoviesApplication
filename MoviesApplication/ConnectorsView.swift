@@ -35,7 +35,7 @@ class ConnectorsView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // MARK:- Setting Up Views And Constraints
+    // MARK:- Setting Up Views
     func setUpViews() {
         blurEffect = UIBlurEffect(style: .regular)
         blurredEffectView = UIVisualEffectView(effect: blurEffect)
@@ -88,6 +88,7 @@ class ConnectorsView: UIView {
         addSubview(signUpButton)
     }
     
+    // MARK:- Setting Up Constraints
     func setUpConstraints() {
         blurredEffectView.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
@@ -137,7 +138,7 @@ class ConnectorsView: UIView {
             make.width.equalTo(70)
         }
     }
-    
+    // MARK:- Buttons Actions
     @objc func buttonTapped() {
         self.delegate.showUpSignUpView()
     }

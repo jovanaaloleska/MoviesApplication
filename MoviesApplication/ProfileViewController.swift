@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    // MARK:- Setting Up Views
+    // MARK:- Setting Up The Views
     func setUpViews() {
         view.backgroundColor = .black
         

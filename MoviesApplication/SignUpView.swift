@@ -36,7 +36,7 @@ class SignUpView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // MARK:- Setting Up Views And Constraints
+    // MARK:- Setting Up Views
     func setUpViews(){
         blurEffect = UIBlurEffect(style: .regular)
         blurredEffectView = UIVisualEffectView(effect: blurEffect)
@@ -73,6 +73,8 @@ class SignUpView: UIView {
         addSubview(backToLoginButton)
         addSubview(backToLoginLabel)
     }
+    
+    // MARK:- Setting up Constraints
     func setUpConstraints(){
         blurredEffectView.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
@@ -142,6 +144,7 @@ class SignUpView: UIView {
         
     }
 }
+
 // MARK:- Delegate functions
 extension SignUpView : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -159,6 +162,7 @@ extension SignUpView : UITableViewDelegate, UITableViewDataSource {
         return 50.0
     }
 }
+
 // MARK:- Delegate functions from SignUpTableViewCell
 extension SignUpView : SignUpTableViewCellDelegate {
     

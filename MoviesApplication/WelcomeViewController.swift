@@ -94,7 +94,7 @@ class WelcomeViewController: UIViewController {
         self.view.addSubview(logInView)
         self.view.addGestureRecognizer(tap)
     }
-    
+    // MARK:- Setting Up Constraints
     func setUpConstraints() {
         backgroundImageView.snp.makeConstraints { (make) in
             make.width.equalTo(self.view.snp.width)
@@ -317,13 +317,14 @@ class WelcomeViewController: UIViewController {
         })
     }
     
+    // MARK:- Email validation
     func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
-    
+    // MARK:- Facebook Login implementation
     func checkForEmptyDataForRegister (user: UserInfo) -> Bool {
         if ((user.email == "" || user.email == nil) || (user.password == "" || user.password == nil) || (user.firstName == "" || user.firstName == nil) || (user.lastName == "" || user.lastName == nil)) {
             return true
@@ -385,7 +386,7 @@ extension Bool {
     }
 }
 
-// MARK:- Delegate functions from ConnectorsView
+// MARK:- Connectors delegate functions
 extension WelcomeViewController : ConnectorsViewDelegate {
     func signInFacebookButtonTapped() {
         facebookLogin()
@@ -404,7 +405,7 @@ extension WelcomeViewController : ConnectorsViewDelegate {
     }
 }
 
-// MARK:- Delegate functions from SignUpView
+// MARK:- SignUpView delegate functions
 extension WelcomeViewController : SignUpViewDelegate {
     func checkEmptyTextFields() {
         if checkForEmptyDataForRegister(user: userInfo) {
@@ -449,7 +450,7 @@ extension WelcomeViewController : SignUpViewDelegate {
     }
 }
 
-// MARK:- Delegate functions from LogInView
+// MARK:- LogInView delegate functions
 extension WelcomeViewController : LogInViewDelegate {
     func goToSignUpView() {
         hideLogInView()

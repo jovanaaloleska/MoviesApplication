@@ -36,7 +36,8 @@ class SignUpTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
     }
-    // MARK:- Setting Up Views And Constraints
+    
+    // MARK:- Setting Up Views
     func setUpViews() {
         self.selectionStyle = .none
         textField = Utilities.createTextField(font: .systemFont(ofSize: 15), textColor: .black, placeHolder: "", backgroundColor: .clear, cornerRadius: 1, textAlignment: .left)
@@ -56,6 +57,7 @@ class SignUpTableViewCell: UITableViewCell {
         self.contentView.addSubview(iconImageView)
     }
     
+    // MARK:- Setting Up Constraints
     func setUpConstraints() {
         
         textField.snp.makeConstraints { (make) in
@@ -73,6 +75,7 @@ class SignUpTableViewCell: UITableViewCell {
         }
     }
     
+    // MARK:- Setting Up The Cell
     func setUpCell(textFieldIcon: String, textFieldPlaceHolder: String, type: TextfieldType){
         textFieldType = type
         iconImageView.image = UIImage(named: textFieldIcon)
@@ -90,6 +93,7 @@ class SignUpTableViewCell: UITableViewCell {
         textField.isSecureTextEntry == true ? (textField.isSecureTextEntry = false) : (textField.isSecureTextEntry = true)
     }
 }
+
 // MARK:- Delegate functions
 extension SignUpTableViewCell : UITextFieldDelegate {
     
