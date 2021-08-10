@@ -26,12 +26,14 @@
 		387AA04C26BAB43C00DA607F /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AA04B26BAB43C00DA607F /* MoviesViewController.swift */; };
 		387AA04F26BAB44800DA607F /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AA04E26BAB44800DA607F /* DiscoverViewController.swift */; };
 		387AA05226BAB45B00DA607F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AA05126BAB45B00DA607F /* ProfileViewController.swift */; };
+		3881064526C2BAC700F2B565 /* MoviesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3881064426C2BAC700F2B565 /* MoviesCollectionViewCell.swift */; };
 		38AA52FF26C27A5500A431E3 /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AA52FE26C27A5500A431E3 /* HeaderTableView.swift */; };
 		38AF3A1726C131BE0004D829 /* ShowsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AF3A1626C131BE0004D829 /* ShowsTableViewCell.swift */; };
 		38C59DF926A6B59200C92AC0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C59DF826A6B59200C92AC0 /* Utilities.swift */; };
 		38C7702B26A9BFE100B9716A /* EnumerationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7702A26A9BFE100B9716A /* EnumerationAnimation.swift */; };
 		38E807EE26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E807ED26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift */; };
 		38E807F126AAF29F00C1C6F1 /* SubviewTypeEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E807F026AAF29F00C1C6F1 /* SubviewTypeEnumeration.swift */; };
+		38E9985526C2B8B4008D4C00 /* MoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E9985426C2B8B4008D4C00 /* MoviesTableViewCell.swift */; };
 		38F6FCEC26B0005A003183FF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F6FCEB26B0005A003183FF /* Extensions.swift */; };
 		9A1672E5D200CEC4991CB657 /* Pods_MoviesApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CBF17A071B98790031A6F6E /* Pods_MoviesApplication.framework */; };
 /* End PBXBuildFile section */
@@ -59,12 +61,14 @@
 		387AA04B26BAB43C00DA607F /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		387AA04E26BAB44800DA607F /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		387AA05126BAB45B00DA607F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		3881064426C2BAC700F2B565 /* MoviesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesCollectionViewCell.swift; sourceTree = "<group>"; };
 		38AA52FE26C27A5500A431E3 /* HeaderTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableView.swift; sourceTree = "<group>"; };
 		38AF3A1626C131BE0004D829 /* ShowsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsTableViewCell.swift; sourceTree = "<group>"; };
 		38C59DF826A6B59200C92AC0 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		38C7702A26A9BFE100B9716A /* EnumerationAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumerationAnimation.swift; sourceTree = "<group>"; };
 		38E807ED26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTypeEnumeration.swift; sourceTree = "<group>"; };
 		38E807F026AAF29F00C1C6F1 /* SubviewTypeEnumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubviewTypeEnumeration.swift; sourceTree = "<group>"; };
+		38E9985426C2B8B4008D4C00 /* MoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableViewCell.swift; sourceTree = "<group>"; };
 		38F6FCEB26B0005A003183FF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4E17EE1AD4237A9E443DCDE4 /* Pods-MoviesApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesApplication.release.xcconfig"; path = "Target Support Files/Pods-MoviesApplication/Pods-MoviesApplication.release.xcconfig"; sourceTree = "<group>"; };
 		D15167B5F2EE2D0860C50ABD /* Pods-MoviesApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesApplication.debug.xcconfig"; path = "Target Support Files/Pods-MoviesApplication/Pods-MoviesApplication.debug.xcconfig"; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 		38AF3A0E26C12D5E0004D829 /* TabBarController */ = {
 			isa = PBXGroup;
 			children = (
+				38AA52FE26C27A5500A431E3 /* HeaderTableView.swift */,
 				387AA04526BAB2CD00DA607F /* TabBarController.swift */,
 				38AF3A1226C12E240004D829 /* ProfileViewController */,
 				38AF3A1126C12D970004D829 /* DiscoverViewController */,
@@ -150,7 +155,6 @@
 		38AF3A0F26C12D800004D829 /* ShowsViewController */ = {
 			isa = PBXGroup;
 			children = (
-				38AA52FE26C27A5500A431E3 /* HeaderTableView.swift */,
 				387AA04826BAB42C00DA607F /* ShowsViewController.swift */,
 				38AF3A1626C131BE0004D829 /* ShowsTableViewCell.swift */,
 				3879A2CF26C14DBD00F1D52F /* ShowsCollectionViewCell.swift */,
@@ -162,6 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				387AA04B26BAB43C00DA607F /* MoviesViewController.swift */,
+				38E9985426C2B8B4008D4C00 /* MoviesTableViewCell.swift */,
+				3881064426C2BAC700F2B565 /* MoviesCollectionViewCell.swift */,
 			);
 			path = MoviesViewController;
 			sourceTree = "<group>";
@@ -342,6 +348,7 @@
 				380A28CE26A704E20096FC19 /* LogInView.swift in Sources */,
 				383A1E7626A5ABD200D52627 /* WelcomeViewController.swift in Sources */,
 				387AA05226BAB45B00DA607F /* ProfileViewController.swift in Sources */,
+				38E9985526C2B8B4008D4C00 /* MoviesTableViewCell.swift in Sources */,
 				38AA52FF26C27A5500A431E3 /* HeaderTableView.swift in Sources */,
 				3879A2D026C14DBD00F1D52F /* ShowsCollectionViewCell.swift in Sources */,
 				3879CD2226AFEC2300D8821E /* TextfieldTypeEnumeration.swift in Sources */,
@@ -351,6 +358,7 @@
 				380FBA7526AEBA0800C1CA4A /* UserInfo.swift in Sources */,
 				387AA04626BAB2CD00DA607F /* TabBarController.swift in Sources */,
 				380A28D126A704FC0096FC19 /* SignUpView.swift in Sources */,
+				3881064526C2BAC700F2B565 /* MoviesCollectionViewCell.swift in Sources */,
 				387AA04F26BAB44800DA607F /* DiscoverViewController.swift in Sources */,
 				38C59DF926A6B59200C92AC0 /* Utilities.swift in Sources */,
 				38E807EE26AAA98A00C1C6F1 /* PhoneTypeEnumeration.swift in Sources */,
