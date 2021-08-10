@@ -10,6 +10,7 @@ import UIKit
 class ShowsViewController: UIViewController {
     
     var tableView: UITableView!
+    var sectionsTitles = ["Popular shows", "Airing Today", "Upcoming shows", "Top rated shows"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +19,7 @@ class ShowsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    // MARK:- Setting Up Views And Constraints
+    // MARK:- Setting Up Views
     func setUpViews() {
         view.backgroundColor = UIColor.black
         
@@ -32,6 +33,7 @@ class ShowsViewController: UIViewController {
         view.addSubview(tableView)
     }
     
+    // MARK:- Setting Up Constraints
     func setUpConstraints() {
         tableView.snp.makeConstraints { (make) in
             make.edges.equalTo(view.safeAreaLayoutGuide)
@@ -39,6 +41,7 @@ class ShowsViewController: UIViewController {
     }
 }
 
+// MARK:- UITableView, UITableViewDataSource delegate functions
 extension ShowsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -55,20 +58,26 @@ extension ShowsViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (self.view.frame.height)/3
+        return (self.view.frame.width)/1.7
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if (section == 0)
-        {
-            return "Popular shows"
-        } else if (section == 1) {
-            return "Airing today"
-        } else if (section == 2) {
-            return "Upcoming shows"
-        } else if (section == 3) {
-            return "Top rated shows"
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.contentView.backgroundColor = .gray
+            headerView.backgroundView?.backgroundColor = .darkGray
+            headerView.textLabel?.textColor = .white
         }
-        return ""
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var headerView = HeaderTableView()
+        headerView.setUpHeaderSection(text: sectionsTitles[section])
+        return headerView
+    }
+}
+
+extension ShowsViewController : HeaderTableViewDelegate {
+    func seeAllShows() {
+        
     }
 }

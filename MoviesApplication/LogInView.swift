@@ -53,13 +53,12 @@ class LogInView: UIView {
         
         forgotPasswordButton = Utilities.createButton(title: "Forgot?", backgroundColor: .clear, cornerRadius: 8, titleColor: .systemBlue)
         
-        logInLabel = Utilities.createLabel(title: "Login", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
-        logInLabel.font = UIFont.boldSystemFont(ofSize: 22)
+        logInLabel = Utilities.createLabel(title: "Login", backgroundColor: .clear, cornerRadius: 8, textColor: .white, font: .boldSystemFont(ofSize: 22))
         
         logInButton = Utilities.createButton(title: "Login", backgroundColor: .systemBlue, cornerRadius: 8, titleColor: .white)
         logInButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         
-        registerLabel = Utilities.createLabel(title: "New to MoviesApp? ", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
+        registerLabel = Utilities.createLabel(title: "New to MoviesApp? ", backgroundColor: .clear, cornerRadius: 8, textColor: .white, font: .systemFont(ofSize: 16))
         
         registerButton = Utilities.createButton(title: "Register", backgroundColor: .clear, cornerRadius: 8, titleColor: .systemBlue)
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)

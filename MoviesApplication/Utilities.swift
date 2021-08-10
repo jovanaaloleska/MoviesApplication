@@ -21,12 +21,23 @@ class Utilities {
         return button
     }
     
-    static func createLabel(title: String, backgroundColor: UIColor, cornerRadius: CGFloat, textColor: UIColor) -> UILabel{
+    static func createButtonWithImage(name: String, backgroundColor: UIColor, cornerRadius: CGFloat, titleColor: UIColor) -> UIButton
+    {
+        let button = UIButton()
+        button.setImage(UIImage(named: name), for: .normal)
+        button.backgroundColor = backgroundColor
+        button.layer.cornerRadius = cornerRadius
+        button.setTitleColor(titleColor, for: .normal)
+        return button
+    }
+    
+    static func createLabel(title: String, backgroundColor: UIColor, cornerRadius: CGFloat, textColor: UIColor, font: UIFont) -> UILabel{
         let label = UILabel()
         label.text = title
         label.layer.cornerRadius = cornerRadius
         label.backgroundColor = backgroundColor
         label.textColor = textColor
+        label.font = font
         return label
     }
     

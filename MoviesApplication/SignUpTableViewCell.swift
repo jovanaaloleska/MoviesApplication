@@ -48,8 +48,7 @@ class SignUpTableViewCell: UITableViewCell {
         iconImageView.layer.masksToBounds = true
         iconImageView.backgroundColor = .clear
         
-        showPassButton = UIButton()
-        showPassButton.setImage(UIImage(named: "passIcon"), for: .normal)
+        showPassButton = Utilities.createButtonWithImage(name: "passIcon", backgroundColor: .clear, cornerRadius: 0, titleColor: .clear)
         showPassButton.addTarget(self, action: #selector(checkingVisibilityOfPassword), for: .touchUpInside)
         
         self.backgroundColor = .clear

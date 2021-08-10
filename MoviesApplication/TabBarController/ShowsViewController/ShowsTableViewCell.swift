@@ -23,9 +23,10 @@ class ShowsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK:- Setting Up Views
     func setUpViews() {
         layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
         layout.scrollDirection = .horizontal
         
         collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
@@ -37,6 +38,7 @@ class ShowsTableViewCell: UITableViewCell {
         self.contentView.addSubview(collectionView)
     }
     
+    // MARK:- Setting Up Constraints
     func setUpConstraints() {
         collectionView.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
@@ -44,10 +46,11 @@ class ShowsTableViewCell: UITableViewCell {
     }
 }
 
+// MARK:- CollectionView delegate functions
 extension ShowsTableViewCell :  UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width-30)/2, height: (collectionView.frame.width)/2)
+        return CGSize(width: (collectionView.frame.width-30)/2.5, height: self.frame.height-10)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -69,5 +72,6 @@ extension ShowsTableViewCell :  UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
+    
 }
 

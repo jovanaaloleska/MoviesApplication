@@ -21,7 +21,7 @@ class ProfileViewController: UIViewController {
     var profileImage = UIImage()
     var arrayUsers = [UserInfo]()
     var counterUsers = 0
-    
+    var navigationControllerProfile = UINavigationController(rootViewController: WelcomeViewController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,31 +29,26 @@ class ProfileViewController: UIViewController {
         setUpViews()
         setUpConstraints()
         setUpNavigation()
-        // Do any additional setup after loading the view.
     }
     
     // MARK:- Setting Up The Views
     func setUpViews() {
         view.backgroundColor = .black
         
-        editProfileLabel = Utilities.createLabel(title: "My Profile", backgroundColor: .clear, cornerRadius: 0, textColor: .white)
-        editProfileLabel.font = .boldSystemFont(ofSize: 25)
+        editProfileLabel = Utilities.createLabel(title: "My Profile", backgroundColor: .clear, cornerRadius: 0, textColor: .white, font: .boldSystemFont(ofSize: 25))
         
-        selectProfilePictureButton = Utilities.createButton(title: "", backgroundColor: .systemYellow, cornerRadius: 8, titleColor: .clear)
-        selectProfilePictureButton.setImage(UIImage(named: "cameraIcon"), for: .normal)
+        selectProfilePictureButton = Utilities.createButtonWithImage(name: "cameraIcon", backgroundColor: .systemYellow, cornerRadius: 8, titleColor: .clear)
         selectProfilePictureButton.addTarget(self, action: #selector(showActionSheet), for: .touchUpInside)
         
-        nameLabel = Utilities.createLabel(title: "", backgroundColor: .clear, cornerRadius: 0, textColor: .white)
+        nameLabel = Utilities.createLabel(title: "", backgroundColor: .clear, cornerRadius: 0, textColor: .white, font: .boldSystemFont(ofSize: 19))
         if let firstName = user.firstName, let lastName = user.lastName {
             nameLabel.text = "\(firstName) \(lastName)"
         }
-        nameLabel.font = .boldSystemFont(ofSize: 19)
         
-        mailLabel = Utilities.createLabel(title: "", backgroundColor: .clear, cornerRadius: 0, textColor: .white)
+        mailLabel = Utilities.createLabel(title: "", backgroundColor: .clear, cornerRadius: 0, textColor: .white, font: .boldSystemFont(ofSize: 17))
         if let email = user.email {
             mailLabel.text = "\(email)"
         }
-        mailLabel.font = .boldSystemFont(ofSize: 17)
         
         signOutButton = Utilities.createButton(title: "Sign Out", backgroundColor: .systemYellow, cornerRadius: 5, titleColor: .white)
         signOutButton.addTarget(self, action: #selector(signingOut), for: .touchUpInside)
@@ -127,7 +122,9 @@ class ProfileViewController: UIViewController {
     
     @objc func signingOut() {
         UserPersistence.sharedInstance.setFlagLoggedIn(flagUserLoggedIn: false)
-        self.navigationController?.pushViewController(WelcomeViewController(), animated: true)
+        navigationControllerProfile.navigationBar.isHidden = true
+        navigationControllerProfile.modalPresentationStyle = .fullScreen
+        self.present(navigationControllerProfile, animated: true, completion: nil)
     }
     
     // MARK:- Image picker implementation
@@ -231,5 +228,4 @@ extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationC
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
-    
 }

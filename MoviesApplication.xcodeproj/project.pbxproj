@@ -26,6 +26,7 @@
 		387AA04C26BAB43C00DA607F /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AA04B26BAB43C00DA607F /* MoviesViewController.swift */; };
 		387AA04F26BAB44800DA607F /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AA04E26BAB44800DA607F /* DiscoverViewController.swift */; };
 		387AA05226BAB45B00DA607F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387AA05126BAB45B00DA607F /* ProfileViewController.swift */; };
+		38AA52FF26C27A5500A431E3 /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AA52FE26C27A5500A431E3 /* HeaderTableView.swift */; };
 		38AF3A1726C131BE0004D829 /* ShowsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AF3A1626C131BE0004D829 /* ShowsTableViewCell.swift */; };
 		38C59DF926A6B59200C92AC0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C59DF826A6B59200C92AC0 /* Utilities.swift */; };
 		38C7702B26A9BFE100B9716A /* EnumerationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7702A26A9BFE100B9716A /* EnumerationAnimation.swift */; };
@@ -58,6 +59,7 @@
 		387AA04B26BAB43C00DA607F /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		387AA04E26BAB44800DA607F /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		387AA05126BAB45B00DA607F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		38AA52FE26C27A5500A431E3 /* HeaderTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableView.swift; sourceTree = "<group>"; };
 		38AF3A1626C131BE0004D829 /* ShowsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsTableViewCell.swift; sourceTree = "<group>"; };
 		38C59DF826A6B59200C92AC0 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		38C7702A26A9BFE100B9716A /* EnumerationAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumerationAnimation.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		38AF3A0F26C12D800004D829 /* ShowsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				38AA52FE26C27A5500A431E3 /* HeaderTableView.swift */,
 				387AA04826BAB42C00DA607F /* ShowsViewController.swift */,
 				38AF3A1626C131BE0004D829 /* ShowsTableViewCell.swift */,
 				3879A2CF26C14DBD00F1D52F /* ShowsCollectionViewCell.swift */,
@@ -339,6 +342,7 @@
 				380A28CE26A704E20096FC19 /* LogInView.swift in Sources */,
 				383A1E7626A5ABD200D52627 /* WelcomeViewController.swift in Sources */,
 				387AA05226BAB45B00DA607F /* ProfileViewController.swift in Sources */,
+				38AA52FF26C27A5500A431E3 /* HeaderTableView.swift in Sources */,
 				3879A2D026C14DBD00F1D52F /* ShowsCollectionViewCell.swift in Sources */,
 				3879CD2226AFEC2300D8821E /* TextfieldTypeEnumeration.swift in Sources */,
 				38C7702B26A9BFE100B9716A /* EnumerationAnimation.swift in Sources */,

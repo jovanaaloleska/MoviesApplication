@@ -51,10 +51,9 @@ class SignUpView: UIView {
         tableView.backgroundColor = .clear
         tableView.tableFooterView = UIView()
         
-        signUpLabel = Utilities.createLabel(title: "Sign Up", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
-        signUpLabel.font = UIFont.boldSystemFont(ofSize: 22)
+        signUpLabel = Utilities.createLabel(title: "Sign Up", backgroundColor: .clear, cornerRadius: 8, textColor: .white, font: .boldSystemFont(ofSize: 22))
         
-        registerLabel = Utilities.createLabel(title: "Register with email..", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
+        registerLabel = Utilities.createLabel(title: "Register with email..", backgroundColor: .clear, cornerRadius: 8, textColor: .white, font: .systemFont(ofSize: 18))
         registerLabel.textAlignment = .center
         
         registerButton = Utilities.createButton(title: "Register", backgroundColor: .systemBlue, cornerRadius: 8, titleColor: .white)
@@ -63,7 +62,7 @@ class SignUpView: UIView {
         backToLoginButton = Utilities.createButton(title: "Login", backgroundColor: .clear, cornerRadius: 8, titleColor: .systemBlue)
         backToLoginButton.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
         
-        backToLoginLabel = Utilities.createLabel(title: "Or go back to ", backgroundColor: .clear, cornerRadius: 8, textColor: .white)
+        backToLoginLabel = Utilities.createLabel(title: "Or go back to ", backgroundColor: .clear, cornerRadius: 8, textColor: .white, font: .systemFont(ofSize: 17))
         
         addSubview(blurredEffectView)
         addSubview(tableView)
@@ -141,7 +140,6 @@ class SignUpView: UIView {
         if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as? SignUpTableViewCell {
             cell.textField.becomeFirstResponder()
         }
-        
     }
 }
 
