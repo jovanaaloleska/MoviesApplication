@@ -70,7 +70,7 @@ extension ShowsViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var headerView = HeaderTableView()
+        let headerView = HeaderTableView()
         headerView.setUpHeaderSection(text: sectionsTitles[section])
         return headerView
     }
