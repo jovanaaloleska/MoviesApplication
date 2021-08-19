@@ -12,4 +12,5 @@ pod 'GoogleSignIn'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
 pod 'Kingfisher'
+pod 'Alamofire'
 end

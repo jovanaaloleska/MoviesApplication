@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.4.3)
   - AppAuth (1.4.0):
     - AppAuth/Core (= 1.4.0)
     - AppAuth/ExternalUserAgent (= 1.4.0)
@@ -28,6 +29,7 @@ PODS:
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
+  - Alamofire
   - FBSDKCoreKit
   - FBSDKLoginKit
   - GoogleSignIn
@@ -36,6 +38,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - AppAuth
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
@@ -47,6 +50,7 @@ SPEC REPOS:
     - SnapKit
 
 SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   FBSDKCoreKit: 38c9e29a3f1436362acacff6486d3a28628c288f
   FBSDKCoreKit_Basics: 06780a4a12e16596bde8406add02c6aa1bf38616
@@ -57,6 +61,6 @@ SPEC CHECKSUMS:
   Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 5c9efd1c08bf9b746ef9afd6cbf4e4774443adfc
+PODFILE CHECKSUM: c94e31fdb92bc547e954a6c1ecddb463c6487e41
 
 COCOAPODS: 1.10.1
