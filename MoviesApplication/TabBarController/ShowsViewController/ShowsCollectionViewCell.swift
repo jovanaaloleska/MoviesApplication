@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ShowsCollectionViewCell: UICollectionViewCell {
     
@@ -93,7 +94,14 @@ class ShowsCollectionViewCell: UICollectionViewCell {
         return .clear
     }
     //MARK:- Setting up the collectionViewCell
-    func setUpCell (showBackground: String) {
-        showImageView.image = UIImage(named: showBackground)
+    func setUpCell (currentShow: Show) {
+        let baseImageUrl = Utilities.sharedInstance.getBaseUrlForImage()
+        if let safePosterPath = currentShow.poster_path {
+        var stringUrlForImage = "\(baseImageUrl)\(safePosterPath)"
+        print(stringUrlForImage)
+        if let urlImageShow = URL(string: stringUrlForImage){
+            showImageView.kf.setImage(with: urlImageShow, options: [.scaleFactor(UIScreen.main.scale), .transition(.flipFromBottom(0.1))])
+        }
+    }
     }
 }

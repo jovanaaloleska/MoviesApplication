@@ -29,6 +29,7 @@
 		3881064526C2BAC700F2B565 /* MoviesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3881064426C2BAC700F2B565 /* MoviesCollectionViewCell.swift */; };
 		38AA52FF26C27A5500A431E3 /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AA52FE26C27A5500A431E3 /* HeaderTableView.swift */; };
 		38AF3A1726C131BE0004D829 /* ShowsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AF3A1626C131BE0004D829 /* ShowsTableViewCell.swift */; };
+		38AF6BC926CFA45F003D3A10 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AF6BC826CFA45F003D3A10 /* Show.swift */; };
 		38C59DF926A6B59200C92AC0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C59DF826A6B59200C92AC0 /* Utilities.swift */; };
 		38C7702B26A9BFE100B9716A /* EnumerationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7702A26A9BFE100B9716A /* EnumerationAnimation.swift */; };
 		38DAF43226CF8FBA005A0AD6 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DAF43126CF8FBA005A0AD6 /* ApiManager.swift */; };
@@ -67,6 +68,7 @@
 		3881064426C2BAC700F2B565 /* MoviesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesCollectionViewCell.swift; sourceTree = "<group>"; };
 		38AA52FE26C27A5500A431E3 /* HeaderTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableView.swift; sourceTree = "<group>"; };
 		38AF3A1626C131BE0004D829 /* ShowsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsTableViewCell.swift; sourceTree = "<group>"; };
+		38AF6BC826CFA45F003D3A10 /* Show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		38C59DF826A6B59200C92AC0 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		38C7702A26A9BFE100B9716A /* EnumerationAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumerationAnimation.swift; sourceTree = "<group>"; };
 		38DAF43126CF8FBA005A0AD6 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				380FBA7426AEBA0800C1CA4A /* UserInfo.swift */,
+				38AF6BC826CFA45F003D3A10 /* Show.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				383A1E7426A5ABD200D52627 /* SceneDelegate.swift in Sources */,
 				384B910726B146B70011EDD1 /* UserDefaults.swift in Sources */,
 				387AA04926BAB42C00DA607F /* ShowsViewController.swift in Sources */,
+				38AF6BC926CFA45F003D3A10 /* Show.swift in Sources */,
 				38E807F126AAF29F00C1C6F1 /* SubviewTypeEnumeration.swift in Sources */,
 				38DAF43226CF8FBA005A0AD6 /* ApiManager.swift in Sources */,
 				380A28CA26A6DCE60096FC19 /* ConnectorsView.swift in Sources */,

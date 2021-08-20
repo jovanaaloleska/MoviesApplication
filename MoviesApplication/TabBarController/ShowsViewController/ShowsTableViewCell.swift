@@ -12,6 +12,7 @@ class ShowsTableViewCell: UITableViewCell {
     var collectionView: UICollectionView!
     var layout: UICollectionViewFlowLayout!
     var showsBackgrounds = ["bojackHorseman", "dark", "emilyInParis", "laCasaDePapel", "lupin", "outerBanks", "peakyBlinders", "strangerThings", "theCrown", "theWitcher"]
+    var currentShowsArray = [Show]()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -44,6 +45,11 @@ class ShowsTableViewCell: UITableViewCell {
             make.edges.equalTo(self)
         }
     }
+    
+    func getArraysForShows(array: [Show]) {
+        currentShowsArray = array
+        collectionView.reloadData()
+    }
 }
 
 // MARK:- CollectionView delegate functions
@@ -54,14 +60,14 @@ extension ShowsTableViewCell :  UICollectionViewDelegateFlowLayout, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return showsBackgrounds.count
+        return currentShowsArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "showsCollectionViewCell", for: indexPath as IndexPath) as! ShowsCollectionViewCell
         cell.backgroundColor = UIColor.clear // make cell more visible in our example project
         cell.layer.cornerRadius = 8
-        cell.setUpCell(showBackground: showsBackgrounds[indexPath.row])
+        cell.setUpCell(currentShow: currentShowsArray[indexPath.row])
         return cell
     }
     

@@ -91,4 +91,17 @@ class Utilities {
         }
         return data
     }
+    
+    func jsonToData(json: Any) -> Data? {
+            do {
+                return try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted)
+            } catch let myJSONError {
+                print(myJSONError)
+            }
+            return nil
+        }
+    
+    func getBaseUrlForImage() -> String {
+            return "https://image.tmdb.org/t/p/w500/"
+        }
 }

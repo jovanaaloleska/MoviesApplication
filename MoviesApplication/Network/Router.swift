@@ -13,7 +13,7 @@ enum Router: URLRequestConvertible {
   
     case PopularShows
     case AiringToday
-    case UpcomingShows
+    case OnTheAirShows
     case TopRatedShows
     
     var method: Alamofire.HTTPMethod {
@@ -29,8 +29,8 @@ enum Router: URLRequestConvertible {
             return NetworkConstants.Network.Endpoints.popularShows
         case .AiringToday:
             return NetworkConstants.Network.Endpoints.airingToday
-        case .UpcomingShows:
-            return NetworkConstants.Network.Endpoints.upcomingShows
+        case .OnTheAirShows:
+            return NetworkConstants.Network.Endpoints.onTheAirShows
         case .TopRatedShows:
             return NetworkConstants.Network.Endpoints.topRatedShows
         }
@@ -53,7 +53,7 @@ enum Router: URLRequestConvertible {
     func asURLRequest() throws -> URLRequest {
         var url: URL
         url = URL(string: NetworkConstants.Network.baseUrl+path) ?? URL(string: "")!
-        
+        print(url)
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
         if method.rawValue != "GET" {

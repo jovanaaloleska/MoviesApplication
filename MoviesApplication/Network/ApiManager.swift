@@ -48,8 +48,8 @@ class ApiManager {
         executeRequest(request: Router.AiringToday, completion: completion)
     }
     
-    func getUpcomingShows(completion: @escaping completionHandler) {
-        executeRequest(request: Router.UpcomingShows, completion: completion)
+    func getOnTheAirShows(completion: @escaping completionHandler) {
+        executeRequest(request: Router.OnTheAirShows, completion: completion)
     }
     
     func getTopRatedShows(completion: @escaping completionHandler) {
