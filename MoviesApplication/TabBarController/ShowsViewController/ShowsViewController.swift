@@ -11,10 +11,10 @@ import Alamofire
 class ShowsViewController: UIViewController {
     
     var tableView: UITableView!
-    var sectionsTitles = ["Popular shows", "Airing Today", "Latest shows", "Top rated shows"]
+    var sectionsTitles = ["Popular shows", "Airing Today", "On The Air Shows", "Top rated shows"]
     var arrayPopularShows = [Show]()
     var arrayAiringTodayShows = [Show]()
-    var arrayLatestShows = [Show]()
+    var arrayOnTheAirShows = [Show]()
     var arrayTopRatedShows = [Show]()
     
     override func viewDidLoad() {
@@ -49,6 +49,7 @@ class ShowsViewController: UIViewController {
         }
     }
     
+    // MARK:- Getting the shows for every section respectively
     func getShowsForSection(section: Int) -> [Show]
     {
         if section == 0 {
@@ -56,7 +57,7 @@ class ShowsViewController: UIViewController {
         } else if section == 1 {
             return arrayAiringTodayShows
         } else if section == 2 {
-            return arrayLatestShows
+            return arrayOnTheAirShows
         } else if section == 3 {
             return arrayTopRatedShows
         }
@@ -73,8 +74,6 @@ extension ShowsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "showsTableCell", for: indexPath) as! ShowsTableViewCell
         cell.backgroundColor = .clear
-        let test = getShowsForSection(section: indexPath.section)
-        print(test)
         cell.getArraysForShows(array: getShowsForSection(section: indexPath.section))
         return cell
     }
@@ -97,20 +96,24 @@ extension ShowsViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = HeaderTableView()
+        headerView.delegate = self
         headerView.setUpHeaderSection(text: sectionsTitles[section])
         return headerView
     }
 }
 
 extension ShowsViewController : HeaderTableViewDelegate {
-    func seeAllShows() {
+    func seeAllShows(sectionName: String) {
+        var clickedSectionName = sectionName
+        let destination = SeeAllViewController(sectionName: sectionName)
+        navigationController?.pushViewController(destination, animated: true)
     }
 }
 
+// MARK:- Api calls for every category respectively
 extension ShowsViewController {
-    
     func getPopularShows() {
-        ApiManager.sharedInstance.getPopularShows { (success, responseJson, statusCode) in
+        ApiManager.sharedInstance.getPopularShows(page: 1) { (success, responseJson, statusCode) in
             if success {
                 if let safeJson = responseJson?["results"] as? [[String:Any]] {
                     if let safeData = Utilities.sharedInstance.jsonToData(json: safeJson){
@@ -120,18 +123,18 @@ extension ShowsViewController {
                             self.arrayPopularShows = safeShows
                         }
                     }
-                } else {
-                    self.showAlert(with: "Error with code \(statusCode)", message: nil)
                 }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+            } else {
+                self.showAlert(with: "Error with code \(statusCode)", message: nil)
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
     }
     
     func getAiringToday() {
-        ApiManager.sharedInstance.getAiringToday { (success, responseJson, statusCode) in
+        ApiManager.sharedInstance.getAiringToday(page: 1) { (success, responseJson, statusCode) in
             if success {
                 if let safeJson = responseJson?["results"] as? [[String:Any]] {
                     if let safeData = Utilities.sharedInstance.jsonToData(json: safeJson){
@@ -141,39 +144,39 @@ extension ShowsViewController {
                             self.arrayAiringTodayShows = safeShows
                         }
                     }
-                } else {
-                    self.showAlert(with: "Error with code \(statusCode)", message: nil)
                 }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+            } else {
+                self.showAlert(with: "Error with code \(statusCode)", message: nil)
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
     }
     
     func getOnTheAirShows() {
-        ApiManager.sharedInstance.getOnTheAirShows { (success, responseJson, statusCode) in
+        ApiManager.sharedInstance.getOnTheAirShows(page: 1) { (success, responseJson, statusCode) in
             if success {
                 if let safeJson = responseJson?["results"] as? [[String:Any]] {
                     if let safeData = Utilities.sharedInstance.jsonToData(json: safeJson){
                         let decoder = JSONDecoder()
                         let shows = try? decoder.decode([Show].self, from: safeData)
                         if let safeShows = shows {
-                            self.arrayLatestShows = safeShows
+                            self.arrayOnTheAirShows = safeShows
                         }
                     }
-                } else {
-                    self.showAlert(with: "Error with code \(statusCode)", message: nil)
                 }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+            } else {
+                self.showAlert(with: "Error with code \(statusCode)", message: nil)
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
     }
     
     func getTopRatedMovies() {
-        ApiManager.sharedInstance.getTopRatedShows { (success, responseJson, statusCode) in
+        ApiManager.sharedInstance.getTopRatedShows(page: 1) { (success, responseJson, statusCode) in
             if success {
                 if let safeJson = responseJson?["results"] as? [[String:Any]] {
                     if let safeData = Utilities.sharedInstance.jsonToData(json: safeJson){
@@ -183,12 +186,12 @@ extension ShowsViewController {
                             self.arrayTopRatedShows = safeShows
                         }
                     }
-                } else {
-                    self.showAlert(with: "Error with code \(statusCode)", message: nil)
                 }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+            } else {
+                self.showAlert(with: "Error with code \(statusCode)", message: nil)
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
     }

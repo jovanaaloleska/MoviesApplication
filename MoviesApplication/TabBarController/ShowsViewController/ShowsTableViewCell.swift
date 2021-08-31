@@ -11,9 +11,9 @@ class ShowsTableViewCell: UITableViewCell {
     
     var collectionView: UICollectionView!
     var layout: UICollectionViewFlowLayout!
-    var showsBackgrounds = ["bojackHorseman", "dark", "emilyInParis", "laCasaDePapel", "lupin", "outerBanks", "peakyBlinders", "strangerThings", "theCrown", "theWitcher"]
     var currentShowsArray = [Show]()
     
+    // MARK:- Initialisation
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpViews()
@@ -48,7 +48,7 @@ class ShowsTableViewCell: UITableViewCell {
     
     func getArraysForShows(array: [Show]) {
         currentShowsArray = array
-        collectionView.reloadData()
+        collectionView.reloadData()  //reload data when the elements are in the array
     }
 }
 
@@ -70,6 +70,7 @@ extension ShowsTableViewCell :  UICollectionViewDelegateFlowLayout, UICollection
         cell.setUpCell(currentShow: currentShowsArray[indexPath.row])
         return cell
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10

@@ -7,7 +7,7 @@
 
 import UIKit
 protocol HeaderTableViewDelegate {
-    func seeAllShows()
+    func seeAllShows(sectionName: String)
 }
 class HeaderTableView: UIView {
     
@@ -55,6 +55,6 @@ class HeaderTableView: UIView {
     
     //MARK:- Sending the delegate function to the ShowsViewController
     @objc func seeAllButtonTapped() {
-        self.delegate.seeAllShows()
+        self.delegate.seeAllShows(sectionName: headerTitleLabel.text ?? "")
     }
 }

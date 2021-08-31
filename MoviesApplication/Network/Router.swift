@@ -11,10 +11,10 @@ import Alamofire
 
 enum Router: URLRequestConvertible {
   
-    case PopularShows
-    case AiringToday
-    case OnTheAirShows
-    case TopRatedShows
+    case PopularShows(page: Int)
+    case AiringToday(page: Int)
+    case OnTheAirShows(page: Int)
+    case TopRatedShows(page: Int)
     
     var method: Alamofire.HTTPMethod {
         switch self {
@@ -25,14 +25,14 @@ enum Router: URLRequestConvertible {
     
     var path: String {
         switch self {
-        case .PopularShows:
-            return NetworkConstants.Network.Endpoints.popularShows
-        case .AiringToday:
-            return NetworkConstants.Network.Endpoints.airingToday
-        case .OnTheAirShows:
-            return NetworkConstants.Network.Endpoints.onTheAirShows
-        case .TopRatedShows:
-            return NetworkConstants.Network.Endpoints.topRatedShows
+        case .PopularShows(let page):
+            return NetworkConstants.Network.Endpoints.popularShows+"&page=\(page)"
+        case .AiringToday(let page):
+            return NetworkConstants.Network.Endpoints.airingToday+"&page=\(page)"
+        case .OnTheAirShows(let page):
+            return NetworkConstants.Network.Endpoints.onTheAirShows+"&page=\(page)"
+        case .TopRatedShows(let page):
+            return NetworkConstants.Network.Endpoints.topRatedShows+"&page=\(page)"
         }
     }
     

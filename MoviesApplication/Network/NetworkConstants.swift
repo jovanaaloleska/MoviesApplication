@@ -16,11 +16,13 @@ class NetworkConstants {
         
         static let headers = ["Content-Type":"application/json"]
         
+        static let currentPage = 1
+        
         struct Endpoints {
-            static let popularShows = "/tv/popular?api_key=\(Network.apiKey)"
-            static let airingToday = "/tv/airing_today?api_key=\(Network.apiKey)"
-            static let onTheAirShows = "/tv/on_the_air?api_key=\(Network.apiKey)"
-            static let topRatedShows = "/tv/top_rated?api_key=\(Network.apiKey)"
+            static let popularShows = "/tv/popular?api_key=\(Network.apiKey)&page=\(Network.currentPage)"
+            static let airingToday = "/tv/airing_today?api_key=\(Network.apiKey)&page=\(Network.currentPage)"
+            static let onTheAirShows = "/tv/on_the_air?api_key=\(Network.apiKey)&page=\(Network.currentPage)"
+            static let topRatedShows = "/tv/top_rated?api_key=\(Network.apiKey)&page=\(Network.currentPage)"
         }
     }
 }

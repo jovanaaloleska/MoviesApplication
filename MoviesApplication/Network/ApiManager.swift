@@ -40,20 +40,20 @@ class ApiManager {
         }
     }
     
-    func getPopularShows(completion: @escaping completionHandler) {
-        executeRequest(request: Router.PopularShows, completion: completion)
+    func getPopularShows(page: Int, completion: @escaping completionHandler) {
+        executeRequest(request: Router.PopularShows(page: page), completion: completion)
     }
     
-    func getAiringToday(completion: @escaping completionHandler) {
-        executeRequest(request: Router.AiringToday, completion: completion)
+    func getAiringToday(page: Int, completion: @escaping completionHandler) {
+        executeRequest(request: Router.AiringToday(page: page), completion: completion)
     }
     
-    func getOnTheAirShows(completion: @escaping completionHandler) {
-        executeRequest(request: Router.OnTheAirShows, completion: completion)
+    func getOnTheAirShows(page: Int, completion: @escaping completionHandler) {
+        executeRequest(request: Router.OnTheAirShows(page: page), completion: completion)
     }
     
-    func getTopRatedShows(completion: @escaping completionHandler) {
-        executeRequest(request: Router.TopRatedShows, completion: completion)
+    func getTopRatedShows(page: Int, completion: @escaping completionHandler) {
+        executeRequest(request: Router.TopRatedShows(page: page), completion: completion)
     }
     
 }
